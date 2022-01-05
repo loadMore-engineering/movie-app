@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         primary: '#FFE922',
         secondary: '#0FEFFD',
+        baseLayer: '#202020',
       },
     },
   },
