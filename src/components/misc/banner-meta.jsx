@@ -24,7 +24,10 @@ export default function BannerMeta({
             {rating}
           </div>
           <p className='w-1/2 mt-2 mb-4 opacity-90 hidden lg:block'>{overview}</p>
-          <Button />
+          <Button
+            className='text-primary border hover:bg-primary hover:bg-opacity-10 w-[150px] border-primary py-2 px-6 rounded-full transition-all'
+            title='Watch Now'
+          />
         </div>
       </div>
     </div>

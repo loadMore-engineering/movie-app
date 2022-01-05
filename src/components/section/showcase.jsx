@@ -1,64 +1,123 @@
 import PropTypes from 'prop-types'
-import { ChevronRightIcon } from '@heroicons/react/solid'
-import { ButtonLink, Photo } from 'components/common'
-import { useQuery } from 'react-query'
-import { useEffect } from 'react'
-import { CardMeta } from '.'
+import { useInfiniteQuery } from 'react-query'
+import { useEffect, Fragment } from 'react'
+import Card from 'components/misc/card'
+import clsx from 'clsx'
+import { InfiniteScrollLayout } from 'components/misc'
+import { UglySpinner } from 'components/common'
+import usePrevious from 'hooks/usePrevious'
+import CategoryHeader from './category-header'
 
 export default function Showcase({
   title,
   queryFn,
   queryKey,
-  detailHref,
+  setActiveIndex,
+  activeIndex,
+  selfIndex,
 }) {
   const id = queryKey.toLowerCase()
-  const movie = useQuery([queryKey, { page: 1 }], queryFn)
-  const data = movie.data?.results || []
+
+  const queryMovie = useInfiniteQuery(
+    [queryKey],
+    async ({ pageParam }) => queryFn((pageParam || 0) + 1),
+    {
+      getNextPageParam: ({ page }) => page,
+    },
+  )
+
+  const dataPages = queryMovie.data?.pages || []
+  const totalData = dataPages.reduce((prev, cur) => prev + cur.results.length, 0)
+  const prevActiveIndex = usePrevious(activeIndex)
 
   useEffect(() => {
     const slider = document.getElementById(id)
+
     const functionListener = (evt) => {
       evt.preventDefault()
-      slider.scrollLeft += evt.deltaY
+      if (slider) {
+        slider.scrollLeft += evt.deltaY
+      }
     }
-    slider.addEventListener('wheel', functionListener)
+
+    slider?.addEventListener('wheel', functionListener)
+
+    if (activeIndex === selfIndex) {
+      slider?.removeEventListener('wheel', functionListener)
+    }
+
     return () => {
-      slider.removeEventListener('wheel', functionListener)
+      slider?.removeEventListener('wheel', functionListener)
     }
-  }, [id])
+  }, [id, activeIndex, selfIndex])
+
+  useEffect(() => {
+    if (prevActiveIndex > -1 && activeIndex === -1) {
+      queryMovie.remove()
+    }
+  }, [prevActiveIndex, activeIndex, queryMovie])
 
   return (
     <section className='w-full sm:max-w-screen-xl mx-auto mb-10'>
-      <div className='flex justify-between items-end w-full my-3 pl-3'>
-        <span className='text-xl text-white'>{title}</span>
-        <ButtonLink href={detailHref}>
-          <span className='group font-bold text-primary hover:underline'>
-            See All
-            <ChevronRightIcon className='h-5 w-5 inline-flex opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all' />
-          </span>
-        </ButtonLink>
-      </div>
-      <div className='flex overflow-x-auto gap-x-2 px-3 scroll-hidden' id={id}>
-        {data.map((item) => (
-          <div className='relative group overflow-hidden min-w-[175px]' key={item.id}>
-            <div className='absolute poster-overlay h-[250px] w-[175px] z-10' />
-            <div className='relative h-[250px] group-hover:scale-110 transition-transform'>
-              <Photo
-                alt={item.original_name || item.title}
-                priority={false}
-                size='/w342'
-                src={item.poster_path}
-              />
-            </div>
-            <CardMeta
-              genres={item.genre_ids}
-              overview={item.overview}
-              rating={item.vote_average}
-              title={item.original_name || item.title}
-            />
+      {activeIndex !== selfIndex ? (
+        <Fragment>
+          <CategoryHeader
+            loadMore={dataPages.length === 1 ? queryMovie.fetchNextPage : () => {}}
+            setActiveIndex={setActiveIndex}
+            title={title}
+          />
+          <div
+            className={clsx(
+              activeIndex === selfIndex ? 'grid grid-cols-7' : 'flex',
+              'overflow-x-auto scroll-hidden gap-x-4 gap-y-2 px-3',
+            )}
+            id={id}
+          >
+            {dataPages.map((dataPage) => (
+              <Fragment key={dataPage.page}>
+                {dataPage.results.map((dataMovie) => (
+                  <Card
+                    genres={dataMovie.genre_ids}
+                    img={dataMovie.poster_path}
+                    key={dataMovie.id}
+                    overview={dataMovie.overview}
+                    rating={dataMovie.vote_average}
+                    title={dataMovie.name || dataMovie.title}
+                  />
+                ))}
+              </Fragment>
+            ))}
           </div>
-        ))}
-      </div>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <InfiniteScrollLayout
+            loadMore={queryMovie.fetchNextPage}
+            totalData={totalData}
+          >
+            {dataPages.map((dataPage) => (
+              <Fragment key={dataPage.page}>
+                {dataPage.results.map((dataMovie) => (
+                  <Card
+                    genres={dataMovie.genre_ids}
+                    img={dataMovie.poster_path}
+                    key={dataMovie.id}
+                    overview={dataMovie.overview}
+                    rating={dataMovie.vote_average}
+                    title={dataMovie.name || dataMovie.title}
+                  />
+                ))}
+              </Fragment>
+            ))}
+          </InfiniteScrollLayout>
+          {queryMovie.isFetching && (
+            <div className='flex-center p-3 bg-sky-700 bg-opacity-70 fixed bottom-10 right-10 z-20 rounded'>
+              <UglySpinner />
+              <span className='text-white ml-3'>Loading your movie..</span>
+            </div>
+          )}
+        </Fragment>
+      )}
     </section>
   )
 }
@@ -67,5 +126,7 @@ Showcase.propTypes = {
   title: PropTypes.string.isRequired,
   queryFn: PropTypes.func.isRequired,
   queryKey: PropTypes.string.isRequired,
-  detailHref: PropTypes.string.isRequired,
+  setActiveIndex: PropTypes.func,
+  activeIndex: PropTypes.number,
+  selfIndex: PropTypes.number,
 }
