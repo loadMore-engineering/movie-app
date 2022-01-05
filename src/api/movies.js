@@ -36,20 +36,16 @@ export const getSimilarMovie = ({ queryKey }) => {
   })
 }
 
-export const getUpcomingMovie = ({ queryKey }) => {
-  const [, params] = queryKey
+export const getUpcomingMovie = (page) => API({
+  path: '/movie/upcoming',
+  params: {
+    page,
+  },
+})
 
-  return API({
-    path: '/movie/upcoming',
-    params,
-  })
-}
-
-export const getPopularMovie = ({ queryKey }) => {
-  const [, params] = queryKey
-
-  return API({
-    path: '/movie/popular',
-    params,
-  })
-}
+export const getPopularMovie = (page) => API({
+  path: '/movie/popular',
+  params: {
+    page,
+  },
+})

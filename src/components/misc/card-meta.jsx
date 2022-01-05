@@ -11,16 +11,16 @@ export default function CardMeta({
   return (
     <div className='absolute top-[20%] left-2 z-10'>
       <div className='flex flex-col h-[200px] justify-end'>
-        <div className='flex flex-wrap gap-1'>
+        <span className='text-white text-sm block group-hover:text-primary tracking-wide transition-all'>{title}</span>
+        <div className='flex flex-wrap gap-1 mb-1'>
           {genres.map((genre) => (
             <Chip key={genre} size='sm' text={GENRE[genre]} />
           ))}
         </div>
-        <div className='mt-2 text-white text-xs flex items-center'>
+        <div className='text-white text-xs flex items-center mb-1'>
           <StarIcon className='h-3.5 w-3.5 text-primary mr-1' />
           {rating}
         </div>
-        <span className='text-white text-sm my-2 block'>{title}</span>
       </div>
     </div>
   )

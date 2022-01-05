@@ -1,13 +1,11 @@
 import API from 'lib/axios'
 
-export const getPopularTVShow = ({ queryKey }) => {
-  const [, params] = queryKey
-
-  return API({
-    path: '/tv/popular',
-    params,
-  })
-}
+export const getPopularTVShow = (page) => API({
+  path: '/tv/popular',
+  params: {
+    page,
+  },
+})
 
 export const getTVShowDetails = ({ queryKey }) => {
   const [, { id }] = queryKey

@@ -1,10 +1,29 @@
-export default function Button() {
+import PropTypes from 'prop-types'
+
+export default function Button({
+  title,
+  icon,
+  children,
+  className,
+  onClick,
+}) {
   return (
     <button
-      className='text-primary border hover:bg-primary hover:bg-opacity-10 w-[150px] border-primary py-2 px-6 rounded-full transition-all'
+      className={className}
       type='button'
+      onClick={onClick}
     >
-      Watch Now
+      {title}
+      {icon}
+      {children}
     </button>
   )
+}
+
+Button.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.node,
+  children: PropTypes.any,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
 }

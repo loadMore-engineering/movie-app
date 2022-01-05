@@ -2,12 +2,12 @@ import { useRef } from 'react'
 import Slider from 'react-slick'
 import { getUpcomingMovie } from 'api/movies'
 import { useQuery } from 'react-query'
-import { Photo } from 'components/common'
-import BannerMeta from './banner-meta'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { Photo, Button } from '../common'
+import { BannerMeta } from '../misc'
 
 const settings = {
   autoplay: true,
-  dots: false,
   lazyLoad: true,
   infinite: true,
   fade: true,
@@ -22,11 +22,20 @@ export default function CarouselImage() {
   const movie = useQuery(['NOW_PLAYING', { page: 1 }], getUpcomingMovie)
   const data = movie.data?.results?.slice(0, 5) || []
 
-  console.log(slider.current)
+  const slide = (dir) => {
+    if (dir === 'next') {
+      slider.current.slickNext()
+    } else {
+      slider.current.slickPrev()
+    }
+  }
 
   return (
-    <section className='overflow-hidden'>
-      <Slider {...settings} ref={slider}>
+    <section className='overflow-hidden relative'>
+      <Slider
+        ref={slider}
+        {...settings}
+      >
         {data.map((item) => (
           <div className='banner-image relative overflow-hidden' key={item.id}>
             <div className='banner-image absolute banner-overlay z-10' />
@@ -44,6 +53,20 @@ export default function CarouselImage() {
           </div>
         ))}
       </Slider>
+      <div className='absolute h-full w-full z-10 top-0 hidden md:block'>
+        <div className='max-w-screen-2xl h-full mx-auto flex justify-between items-center'>
+          <Button
+            className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
+            icon={<ChevronLeftIcon className='h-7 w-7 text-white' />}
+            onClick={() => slide('prev')}
+          />
+          <Button
+            className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
+            icon={<ChevronRightIcon className='h-7 w-7 text-white' />}
+            onClick={() => slide('next')}
+          />
+        </div>
+      </div>
     </section>
   )
 }
