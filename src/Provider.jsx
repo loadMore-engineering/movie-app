@@ -1,19 +1,8 @@
 /* eslint-disable react/prop-types */
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { QueryClientProvider } from 'react-query'
+import queryClient from 'lib/react-query'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-      retryDelay: 3000,
-      retry: 3,
-    },
-  },
-})
-
-export default function Core({ children }) {
+export default function Provider({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
