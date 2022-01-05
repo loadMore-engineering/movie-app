@@ -15,7 +15,7 @@ const API = async (props) => {
     method,
     params: {
       language: 'en-US',
-      apiKey: API_KEY,
+      api_key: API_KEY,
       ...params,
     },
     data,
