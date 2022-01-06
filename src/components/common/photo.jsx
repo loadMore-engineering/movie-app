@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import clsx from 'clsx'
 import env from '../../env'
 import imagePlaceholder from './image-placeholder'
 
@@ -12,6 +13,7 @@ export default function Photo({
   size,
   fallbackSrc,
   priority = true,
+  className,
 }) {
   const [isError, setIsError] = useState()
 
@@ -29,7 +31,7 @@ export default function Photo({
     <Image
       alt={alt}
       blurDataURL={imagePlaceholder()}
-      className='object-cover'
+      className={clsx(className, 'object-cover')}
       layout='fill'
       placeholder='blur'
       priority={priority}
@@ -45,4 +47,5 @@ Photo.propTypes = {
   size: PropTypes.string.isRequired,
   priority: PropTypes.bool,
   fallbackSrc: PropTypes.string,
+  className: PropTypes.string,
 }

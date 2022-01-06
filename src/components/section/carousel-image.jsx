@@ -1,8 +1,7 @@
-import { useRef } from 'react'
 import Slider from 'react-slick'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { ChevronLeftIcon } from '@heroicons/react/solid'
 import { Photo, Button } from '../common'
 import { BannerMeta, BannerDetailsMeta } from '../misc'
 
@@ -15,19 +14,11 @@ const settings = {
   autoplaySpeed: 3000,
   slidesToShow: 1,
   slidesToScroll: 1,
+  pauseOnHover: false,
 }
 
 export default function CarouselImage({ data = [], isInDetailPage = false }) {
   const router = useRouter()
-  const slider = useRef(null)
-
-  const slide = (dir) => {
-    if (dir === 'next') {
-      slider.current.slickNext()
-    } else {
-      slider.current.slickPrev()
-    }
-  }
 
   return (
     <section className='overflow-hidden relative mb-8'>
@@ -38,10 +29,7 @@ export default function CarouselImage({ data = [], isInDetailPage = false }) {
           onClick={() => router.back()}
         />
       )}
-      <Slider
-        ref={slider}
-        {...settings}
-      >
+      <Slider {...settings}>
         {data.map((item) => (
           <div className='banner-image relative overflow-hidden' key={item.id}>
             <div className='banner-image absolute banner-overlay z-10' />
@@ -57,28 +45,13 @@ export default function CarouselImage({ data = [], isInDetailPage = false }) {
             )}
             <Photo
               alt={item.title}
+              className='animated'
               size='/original'
               src={item.backdrop_path}
             />
           </div>
         ))}
       </Slider>
-      {!isInDetailPage && (
-        <div className='absolute h-full w-full z-10 top-0 hidden md:block'>
-          <div className='max-w-screen-2xl h-full mx-auto flex justify-between items-center'>
-            <Button
-              className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
-              icon={<ChevronLeftIcon className='h-7 w-7 text-white' />}
-              onClick={() => slide('prev')}
-            />
-            <Button
-              className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
-              icon={<ChevronRightIcon className='h-7 w-7 text-white' />}
-              onClick={() => slide('next')}
-            />
-          </div>
-        </div>
-      )}
     </section>
   )
 }
