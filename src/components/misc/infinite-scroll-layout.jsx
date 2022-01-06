@@ -19,6 +19,7 @@ export default function InfiniteScrollLayout({ children, loadMore, totalData }) 
         hasMore
         loader={null}
         next={debounceLoadMore}
+        scrollThreshold={0.9}
       >
         {children}
       </InfiniteScroll>

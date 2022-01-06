@@ -9,7 +9,7 @@ class MyDocument extends Document {
         <Head>
           <link href='/favicon.ico' rel='icon' />
           <link href='https://fonts.googleapis.com' rel='preconnect' />
-          <link crossOrigin href='https://fonts.gstatic.com' rel='preconnect' />
+          <link crossOrigin='true' href='https://fonts.gstatic.com' rel='preconnect' />
           <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet' />
         </Head>
         <body>

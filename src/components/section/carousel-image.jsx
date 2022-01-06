@@ -38,7 +38,7 @@ export default function CarouselImage({ isEnabled = true, reservedData = [] }) {
   const dataDisplay = isEnabled ? data : reservedData
 
   return (
-    <section className='overflow-hidden relative'>
+    <section className='overflow-hidden relative mb-8'>
       {!isEnabled && (
         <Button
           className='absolute top-10 left-2 z-10'

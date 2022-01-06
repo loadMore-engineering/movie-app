@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 export default function useScrollToTop() {
   const [visible, setVisible] = useState(false)
   const onScroll = () => {
-    setVisible(document.documentElement.scrollTop > 800)
+    setVisible(document.documentElement.scrollTop > 300)
   }
   useEffect(() => {
     document.addEventListener('scroll', onScroll)
