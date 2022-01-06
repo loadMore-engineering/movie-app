@@ -31,6 +31,12 @@ export default function Movie() {
     },
   )
 
+  const dataPages = useMemo(() => queryMovie.data?.pages || [], [queryMovie])
+
+  const totalData = useMemo(() => {
+    return dataPages.reduce((prev, cur) => prev + cur.results.length, 0)
+  }, [dataPages])
+
   const debounceQuery = useDebouncedCallback(queryMovie.fetchNextPage, 1000)
 
   useEffect(() => {
@@ -42,12 +48,6 @@ export default function Movie() {
       debounceQuery()
     }
   }, [category, debounceQuery, totalData])
-
-  const dataPages = useMemo(() => queryMovie.data?.pages || [], [queryMovie])
-
-  const totalData = useMemo(() => {
-    return dataPages.reduce((prev, cur) => prev + cur.results.length, 0)
-  }, [dataPages])
 
   return (
     <div>
