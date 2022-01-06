@@ -10,6 +10,7 @@ export default function Photo({
   src,
   alt,
   size,
+  fallbackSrc,
   priority = true,
 }) {
   const [isError, setIsError] = useState()
@@ -18,8 +19,9 @@ export default function Photo({
     return (
       <Image
         alt='error'
+        className='object-cover'
         layout='fill'
-        src='/image-error.png'
+        src={fallbackSrc || '/image-error.png'}
       />
     )
   }
@@ -42,4 +44,5 @@ Photo.propTypes = {
   alt: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
   priority: PropTypes.bool,
+  fallbackSrc: PropTypes.string,
 }

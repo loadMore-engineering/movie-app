@@ -20,7 +20,8 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-query": "^3.34.7",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "use-debounce": "^7.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.1",
