@@ -10,8 +10,8 @@ export default function Card({
   rating,
 }) {
   return (
-    <div className='relative group overflow-hidden min-w-[175px]'>
-      <div className='absolute poster-overlay h-[250px] w-[175px] z-10' />
+    <div className='relative group overflow-hidden max-w-full xl:min-w-[175px]'>
+      <div className='absolute poster-overlay h-full w-full z-10' />
       <div className='relative h-[250px] group-hover:scale-110 transition-transform'>
         <Photo
           alt={title}

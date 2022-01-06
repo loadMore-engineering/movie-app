@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { CarouselImage, Showcase, CategoryTabs } from 'components/section'
+import { CarouselImage, Showcase } from 'components/section'
 import { getUpcomingMovie, getPopularMovie } from 'api/movies'
 import { getPopularTVShow } from 'api/tvs'
 import { useState } from 'react'
+import BreakpointDetector from 'components/misc/breakpoint-detector'
 
 const categories = [{
   queryFn: getUpcomingMovie,
@@ -30,24 +31,19 @@ export default function Home() {
         <link href='/favicon.ico' rel='icon' />
       </Head>
       <CarouselImage />
-      {activeIndex !== -1 && (
-        <CategoryTabs
-          activeIndex={activeIndex}
-          categories={categories}
-          setActiveIndex={setActiveIndex}
-        />
-      )}
       {categories.map((category, index) => (
         (showCategory || activeIndex === index) && (
           <Showcase
             activeIndex={activeIndex}
+            categories={categories}
             key={category.title}
             selfIndex={index}
-            setActiveIndex={() => setActiveIndex(index)}
+            setActiveIndex={setActiveIndex}
             {...category}
           />
         )
       ))}
+      <BreakpointDetector />
     </div>
   )
 }

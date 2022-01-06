@@ -10,7 +10,7 @@ export default function CategoryHeader({ title, setActiveIndex, loadMore }) {
   }, [setActiveIndex, loadMore])
 
   return (
-    <div className='flex justify-between items-end w-full my-3 pl-3'>
+    <div className='flex justify-between items-end w-full my-3'>
       <span className='text-xl text-white'>{title}</span>
       <Button onClick={setIndex}>
         <span className='group font-bold text-primary hover:underline'>
