@@ -1,10 +1,13 @@
 import Head from 'next/head'
 import { CarouselImage, Showcase } from 'components/section'
-import { useState } from 'react'
+import { getNowPlayingMovie } from 'api/movies'
+import PropTypes from 'prop-types'
 import queryConfig from '../queryConfig'
 
-export default function Home() {
-  const [activeIndex, setActiveIndex] = useState(-1)
+export default function Home(props) {
+  const { data } = props
+
+  const nowPlayingMovies = (data?.[0]?.value?.results || []).slice(0, 5)
 
   return (
     <div>
@@ -14,18 +17,37 @@ export default function Home() {
         <link href='/favicon.ico' rel='icon' />
       </Head>
       <main>
-        <CarouselImage />
+        <CarouselImage data={nowPlayingMovies} />
         {queryConfig.map((category, index) => (
           <Showcase
-            activeIndex={activeIndex}
-            categories={queryConfig}
+            data={data?.[index + 1]?.value?.results}
             key={category.title}
             selfIndex={index}
-            setActiveIndex={setActiveIndex}
             {...category}
           />
         ))}
       </main>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const response = await Promise.allSettled([
+    getNowPlayingMovie(),
+    ...queryConfig.map(
+      ({ queryFn, queryKey }) => queryFn(
+        [queryKey, { page: 1 }],
+      ),
+    ),
+  ])
+  return {
+    props: {
+      data: response,
+    },
+    revalidate: 1000 * 60 * 60 * 12,
+  }
+}
+
+Home.propTypes = {
+  data: PropTypes.array,
 }
