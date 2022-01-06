@@ -1,13 +1,9 @@
 import API from 'lib/axios'
 
-export const getNowPlayingMovie = ({ queryKey }) => {
-  const [, params] = queryKey
-
-  return API({
-    path: '/movie/now_playing',
-    params,
-  })
-}
+export const getNowPlayingMovie = () => API({
+  path: '/movie/now_playing',
+  params: { page: 1 },
+})
 
 export const getMovieDetails = ({ queryKey }) => {
   const [, { id }] = queryKey
