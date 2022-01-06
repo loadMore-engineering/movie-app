@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 import { useInfiniteQuery } from 'react-query'
-import { useEffect, Fragment } from 'react'
+import { Fragment } from 'react'
 import Card from 'components/misc/card'
 import { InfiniteScrollLayout } from 'components/misc'
 import { UglySpinner } from 'components/common'
+import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import CategoryHeader from './category-header'
 import CategoryTabs from './category-tabs'
 
@@ -15,8 +16,10 @@ export default function Showcase({
   activeIndex,
   selfIndex,
   categories,
+  type,
 }) {
   const id = queryKey.toLowerCase()
+  useHorizontalScroll(id)
 
   const queryMovie = useInfiniteQuery(
     [queryKey],
@@ -28,27 +31,6 @@ export default function Showcase({
 
   const dataPages = queryMovie.data?.pages || []
   const totalData = dataPages.reduce((prev, cur) => prev + cur.results.length, 0)
-
-  useEffect(() => {
-    const slider = document.getElementById(id)
-
-    const functionListener = (evt) => {
-      evt.preventDefault()
-      if (slider) {
-        slider.scrollLeft += evt.deltaY
-      }
-    }
-
-    slider?.addEventListener('wheel', functionListener)
-
-    if (activeIndex === selfIndex) {
-      slider?.removeEventListener('wheel', functionListener)
-    }
-
-    return () => {
-      slider?.removeEventListener('wheel', functionListener)
-    }
-  }, [id, activeIndex, selfIndex])
 
   return (
     <section className='w-full sm:max-w-screen-xl mx-auto mb-10 px-3'>
@@ -69,10 +51,12 @@ export default function Showcase({
                   <div className='min-w-[175px]' key={dataMovie.id}>
                     <Card
                       genres={dataMovie.genre_ids}
+                      id={dataMovie.id}
                       img={dataMovie.poster_path}
                       overview={dataMovie.overview}
                       rating={dataMovie.vote_average}
                       title={dataMovie.name || dataMovie.title}
+                      type={type}
                     />
                   </div>
                 ))}
@@ -97,11 +81,13 @@ export default function Showcase({
                 {dataPage.results.map((dataMovie) => (
                   <Card
                     genres={dataMovie.genre_ids}
+                    id={dataMovie.id}
                     img={dataMovie.poster_path}
                     key={dataMovie.id}
                     overview={dataMovie.overview}
                     rating={dataMovie.vote_average}
                     title={dataMovie.name || dataMovie.title}
+                    type={type}
                   />
                 ))}
               </Fragment>
@@ -127,4 +113,5 @@ Showcase.propTypes = {
   activeIndex: PropTypes.number,
   selfIndex: PropTypes.number,
   categories: PropTypes.array,
+  type: PropTypes.string,
 }

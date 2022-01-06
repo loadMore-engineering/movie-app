@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import Link from 'next/link'
 import { Photo } from '../common'
 import { CardMeta } from '.'
 
@@ -8,25 +9,32 @@ export default function Card({
   genres,
   overview,
   rating,
+  id,
+  type,
 }) {
+  const path = type === 'movie' ? 'movie' : 'tv'
   return (
-    <div className='relative group overflow-hidden max-w-full xl:min-w-[175px]'>
-      <div className='absolute poster-overlay h-full w-full z-10' />
-      <div className='relative h-[250px] group-hover:scale-110 transition-transform'>
-        <Photo
-          alt={title}
-          priority={false}
-          size='/w342'
-          src={img}
-        />
-      </div>
-      <CardMeta
-        genres={genres}
-        overview={overview}
-        rating={rating}
-        title={title}
-      />
-    </div>
+    <Link href={`/${path}/${id}`}>
+      <a>
+        <div className='relative group overflow-hidden max-w-full xl:min-w-[175px]'>
+          <div className='absolute poster-overlay h-full w-full z-10' />
+          <div className='relative h-[250px] group-hover:scale-110 transition-transform'>
+            <Photo
+              alt={title}
+              priority={false}
+              size='/w342'
+              src={img}
+            />
+          </div>
+          <CardMeta
+            genres={genres}
+            overview={overview}
+            rating={rating}
+            title={title}
+          />
+        </div>
+      </a>
+    </Link>
   )
 }
 
@@ -36,4 +44,6 @@ Card.propTypes = {
   img: PropTypes.string,
   overview: PropTypes.string,
   rating: PropTypes.number,
+  id: PropTypes.number,
+  type: PropTypes.string,
 }

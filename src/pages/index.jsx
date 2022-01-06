@@ -9,14 +9,17 @@ const categories = [{
   queryFn: getUpcomingMovie,
   queryKey: 'UPCOMING',
   title: 'New Release',
+  type: 'movie',
 }, {
   queryFn: getPopularTVShow,
   queryKey: 'TV_POPULAR',
   title: 'TV Show',
+  type: 'tv',
 }, {
   queryFn: getPopularMovie,
   queryKey: 'POPULAR',
   title: 'Popular',
+  type: 'movie',
 }]
 
 export default function Home() {
@@ -30,20 +33,22 @@ export default function Home() {
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <CarouselImage />
-      {categories.map((category, index) => (
-        (showCategory || activeIndex === index) && (
-          <Showcase
-            activeIndex={activeIndex}
-            categories={categories}
-            key={category.title}
-            selfIndex={index}
-            setActiveIndex={setActiveIndex}
-            {...category}
-          />
-        )
-      ))}
-      <BreakpointDetector />
+      <main>
+        <CarouselImage />
+        {categories.map((category, index) => (
+          (showCategory || activeIndex === index) && (
+            <Showcase
+              activeIndex={activeIndex}
+              categories={categories}
+              key={category.title}
+              selfIndex={index}
+              setActiveIndex={setActiveIndex}
+              {...category}
+            />
+          )
+        ))}
+        <BreakpointDetector />
+      </main>
     </div>
   )
 }

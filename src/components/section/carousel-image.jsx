@@ -1,10 +1,12 @@
 import { useRef } from 'react'
 import Slider from 'react-slick'
+import { useRouter } from 'next/router'
 import { getUpcomingMovie } from 'api/movies'
 import { useQuery } from 'react-query'
+import PropTypes from 'prop-types'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import { Photo, Button } from '../common'
-import { BannerMeta } from '../misc'
+import { BannerMeta, BannerDetailsMeta } from '../misc'
 
 const settings = {
   autoplay: true,
@@ -17,9 +19,12 @@ const settings = {
   slidesToScroll: 1,
 }
 
-export default function CarouselImage() {
+export default function CarouselImage({ isEnabled = true, reservedData = [] }) {
+  const router = useRouter()
   const slider = useRef(null)
-  const movie = useQuery(['NOW_PLAYING', { page: 1 }], getUpcomingMovie)
+  const movie = useQuery(['NOW_PLAYING', { page: 1 }], getUpcomingMovie, {
+    enabled: isEnabled,
+  })
   const data = movie.data?.results?.slice(0, 5) || []
 
   const slide = (dir) => {
@@ -30,21 +35,35 @@ export default function CarouselImage() {
     }
   }
 
+  const dataDisplay = isEnabled ? data : reservedData
+
   return (
     <section className='overflow-hidden relative'>
+      {!isEnabled && (
+        <Button
+          className='absolute top-10 left-2 z-10'
+          icon={<ChevronLeftIcon className='h-7 w-7 text-white' />}
+          onClick={() => router.back()}
+        />
+      )}
       <Slider
         ref={slider}
         {...settings}
       >
-        {data.map((item) => (
+        {dataDisplay.map((item) => (
           <div className='banner-image relative overflow-hidden' key={item.id}>
             <div className='banner-image absolute banner-overlay z-10' />
-            <BannerMeta
-              genres={item.genre_ids}
-              overview={item.overview}
-              rating={item.vote_average}
-              title={item.title}
-            />
+            {isEnabled ? (
+              <BannerMeta
+                genres={item.genre_ids}
+                isDetail={!isEnabled}
+                overview={item.overview}
+                rating={item.vote_average}
+                title={item.title}
+              />
+            ) : (
+              <BannerDetailsMeta {...item} />
+            )}
             <Photo
               alt={item.title}
               size='/original'
@@ -69,4 +88,9 @@ export default function CarouselImage() {
       </div>
     </section>
   )
+}
+
+CarouselImage.propTypes = {
+  isEnabled: PropTypes.bool,
+  reservedData: PropTypes.array,
 }

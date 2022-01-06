@@ -9,7 +9,7 @@ export default function CategoryTabs({
   clearQueryCache,
 }) {
   return (
-    <nav className='w-full sm:max-w-screen-xl mx-auto my-3 px-3'>
+    <nav className='w-full sm:max-w-screen-xl mx-auto my-3'>
       <span className='text-3xl text-primary'>
         {categories[activeIndex].title}
       </span>
