@@ -15,16 +15,12 @@ export const getTVShowDetails = ({ queryKey }) => {
   })
 }
 
-export const getSimilarTVShow = ({ queryKey }) => {
-  const [, { id, page }] = queryKey
-
-  return API({
-    path: `/tv/${id}/similar`,
-    params: {
-      page,
-    },
-  })
-}
+export const getSimilarTVShow = (id, page) => API({
+  path: `/tv/${id}/similar`,
+  params: {
+    page,
+  },
+})
 
 export const getTVShowCasts = ({ queryKey }) => {
   const [, { id }] = queryKey

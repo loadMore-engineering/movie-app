@@ -25,16 +25,12 @@ export const getMovieCasts = ({ queryKey }) => {
   })
 }
 
-export const getSimilarMovie = ({ queryKey }) => {
-  const [, { id, page }] = queryKey
-
-  return API({
-    path: `/movie/${id}/similar`,
-    params: {
-      page,
-    },
-  })
-}
+export const getSimilarMovie = (id, page) => API({
+  path: `/movie/${id}/similar`,
+  params: {
+    page,
+  },
+})
 
 export const getUpcomingMovie = (page) => API({
   path: '/movie/upcoming',

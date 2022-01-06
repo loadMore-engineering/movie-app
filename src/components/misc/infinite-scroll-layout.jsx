@@ -7,7 +7,7 @@ import { Fragment } from 'react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 
 export default function InfiniteScrollLayout({ children, loadMore, totalData }) {
-  const debounceLoadMore = useDebouncedCallback(() => loadMore(), 1500)
+  const debounceLoadMore = useDebouncedCallback(() => loadMore(), 800)
   const { visible, scrollToTop } = useScrollToTop()
 
   return (
