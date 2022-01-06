@@ -13,19 +13,19 @@ export default function BannerMeta({
     <div className='absolute top-0 left-0 w-full h-full flex items-end z-10 bg-opacity-50'>
       <div className='px-3 xl:max-w-screen-xl mx-auto flex-grow mb-10 xl:mb-[150px]'>
         <div className='flex flex-col h-[200px] justify-end text-white'>
-          <span className='text-3xl md:text-5xl font-semibold my-2 block md:w-1/2'>{title}</span>
+          <span className='text-xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold my-2 block md:w-1/2'>{title}</span>
           <div className='flex flex-wrap gap-1'>
             {genres.map((genre) => (
               <Chip key={genre} text={GENRE[genre]} />
             ))}
           </div>
-          <div className='my-3 lg:mb-0 flex items-center'>
-            <StarIcon className='h-5 w-5 text-primary mr-1' />
+          <div className='my-3 lg:mb-0 flex items-center text-sm md:text-base'>
+            <StarIcon className='h-4 w-4 md:h-5 md:w-5 text-primary mr-1' />
             {rating}
           </div>
           <p className='w-1/2 mt-2 mb-4 opacity-90 hidden lg:block'>{overview}</p>
           <Button
-            className='text-primary border hover:bg-primary hover:bg-opacity-10 w-[150px] border-primary py-2 px-6 rounded-full transition-all'
+            className='watch-now-button text-sm md:text-base'
             title='Watch Now'
           />
         </div>
