@@ -14,7 +14,7 @@ export default function Showcase({
   useHorizontalScroll(id)
 
   return (
-    <section className='w-full sm:max-w-screen-xl mx-auto mb-10 px-3'>
+    <section className='w-full sm:max-w-screen-xl mx-auto mb-3 px-3'>
       <CategoryHeader
         href={{
           pathname: `/${type}`,

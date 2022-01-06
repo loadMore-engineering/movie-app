@@ -45,13 +45,10 @@ body {
 }
 
 .animated {
-  animation: zoomOut 5s infinite;
+  animation: zoomOut 3.5s linear;
 }
 
 @keyframes zoomOut {
-  0% {transform: scale(1.1)};
-  25% {transform: scale(0.6)};
-  50% {transform: scale(0.8)};
-  75% {transform: scale(1.05)};
-  100% {transform: scale(1.1)};
+  0% {transform: scale(1.1);}
+  100% {transform: scale(1);}
 }

@@ -17,7 +17,7 @@ export default function Home(props) {
         <link href='/favicon.ico' rel='icon' />
       </Head>
       <main>
-        <CarouselImage data={nowPlayingMovies} />
+        <CarouselImage data={nowPlayingMovies} useAnimation />
         {queryConfig.map((category, index) => (
           <Showcase
             data={data?.[index + 1]?.value?.results}
