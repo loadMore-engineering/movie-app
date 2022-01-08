@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
-import Card from 'components/misc/card'
+import Card from 'components/misc/movie-card'
 import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import { useRouter } from 'next/router'
 import CategoryHeader from './category-header'

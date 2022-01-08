@@ -15,6 +15,7 @@ export default function Photo({
   priority = true,
   id,
   className,
+  isAvatar,
 }) {
   const [isError, setIsError] = useState()
 
@@ -37,7 +38,11 @@ export default function Photo({
       layout='fill'
       placeholder='blur'
       priority={priority}
-      src={`${IMAGE_URL}${size}${src}`}
+      src={
+        isAvatar
+          ? src
+          : `${IMAGE_URL}${size}${src}`
+      }
       onError={() => setIsError(true)}
     />
   )
@@ -51,5 +56,5 @@ Photo.propTypes = {
   fallbackSrc: PropTypes.string,
   id: PropTypes.string,
   className: PropTypes.string,
-
+  isAvatar: PropTypes.bool,
 }

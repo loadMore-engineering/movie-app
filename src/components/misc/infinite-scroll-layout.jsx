@@ -6,7 +6,7 @@ import { Button, UglySpinner } from 'components/common'
 import { Fragment, useEffect, useMemo } from 'react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import { useInfiniteQuery } from 'react-query'
-import Card from './card'
+import Card from './movie-card'
 
 export default function InfiniteScrollLayout({ query }) {
   const { visible, scrollToTop } = useScrollToTop()

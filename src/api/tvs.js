@@ -29,3 +29,10 @@ export const getTVShowCasts = ({ queryKey }) => {
     path: `/tv/${id}/credits`,
   })
 }
+
+export const getTVShowReviews = (id, page) => API({
+  path: `/tv/${id}/reviews`,
+  params: {
+    page,
+  },
+})

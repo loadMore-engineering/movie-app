@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 import Head from 'next/head'
-import { getMovieDetails, getMovieCasts, getSimilarMovie } from 'api/movies'
+import {
+  getMovieDetails, getMovieCasts, getSimilarMovie, getMovieReviews,
+} from 'api/movies'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import {
-  CarouselImage, MovieCast, MovieSumamry, Showcase,
+  CarouselImage, MovieCast, MovieSumamry, Showcase, MovieReviews,
 } from 'components/section'
 
 export default function MovieDetails(props) {
@@ -14,10 +16,7 @@ export default function MovieDetails(props) {
   const movieDetails = data?.[0]?.value
   const movieCast = data?.[1]?.value
   const similarMovie = data?.[2]?.value
-
-  console.log('movieDetails', movieDetails)
-  console.log('movieCast', movieCast)
-  console.log('similarMovie', similarMovie)
+  const movieReviews = data?.[3]?.value
 
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -39,6 +38,7 @@ export default function MovieDetails(props) {
         </div>
         <section className='max-w-screen-xl mx-auto p-3 text-white'>
           <MovieSumamry movieDetails={movieDetails} />
+          <MovieReviews data={movieReviews.results} />
           <MovieCast casts={movieCast.cast} />
         </section>
         <Showcase
@@ -59,6 +59,7 @@ export async function getStaticProps({ params }) {
     getMovieDetails({ queryKey: ['MOVIE_DETAILS', { id }] }),
     getMovieCasts({ queryKey: ['MOVIE_CAST', { id }] }),
     getSimilarMovie(id, 1),
+    getMovieReviews(id, 1),
   ])
 
   return {
