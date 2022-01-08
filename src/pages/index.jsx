@@ -20,10 +20,12 @@ export default function Home(props) {
         <CarouselImage data={nowPlayingMovies} useAnimation />
         {queryConfig.map((category, index) => (
           <Showcase
+            category={index}
             data={data?.[index + 1]?.value?.results}
             key={category.title}
-            selfIndex={index}
-            {...category}
+            title={category.title}
+            type={category.type}
+            uniqueId={category.queryKey}
           />
         ))}
       </main>

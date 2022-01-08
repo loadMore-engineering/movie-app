@@ -19,7 +19,7 @@ export default function CardMeta({
         </div>
         <div className='text-white text-xs flex items-center mb-1'>
           <StarIcon className='h-3.5 w-3.5 text-primary mr-1' />
-          {rating}
+          {rating.toFixed(1)}
         </div>
       </div>
     </div>

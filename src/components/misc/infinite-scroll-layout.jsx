@@ -10,6 +10,7 @@ import Card from './card'
 
 export default function InfiniteScrollLayout({ query }) {
   const { visible, scrollToTop } = useScrollToTop()
+  const DATA_PER_PAGE = 20
 
   const queryMovie = useInfiniteQuery(
     [query.queryKey],
@@ -31,7 +32,7 @@ export default function InfiniteScrollLayout({ query }) {
   const debounceQuery = useDebouncedCallback(queryMovie.fetchNextPage, 1000)
 
   useEffect(() => {
-    if (totalData === 20) {
+    if (totalData === DATA_PER_PAGE) {
       debounceQuery()
     }
   }, [debounceQuery, totalData])
