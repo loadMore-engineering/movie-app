@@ -10,6 +10,7 @@ const settings = {
   autoplay: true,
   lazyLoad: true,
   infinite: true,
+  pauseOnHover: false,
   fade: true,
   speed: 500,
   autoplaySpeed: 3500,
@@ -74,8 +75,8 @@ export default function CarouselImage({
         ))}
       </Slider>
       {!isInDetailPage && (
-        <div className='absolute h-full w-full z-10 top-0 hidden md:block'>
-          <div className='max-w-screen-2xl h-full mx-auto flex justify-between items-center'>
+        <div className='absolute h-1/2 w-full top-0 hidden md:block'>
+          <div className='max-w-screen-2xl h-full mx-auto flex justify-between items-end'>
             <Button
               className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
               icon={<ChevronLeftIcon className='h-7 w-7 text-white' />}

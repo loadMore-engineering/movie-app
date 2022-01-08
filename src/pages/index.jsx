@@ -16,7 +16,7 @@ export default function Home(props) {
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <main>
+      <main className='pb-10'>
         <CarouselImage data={nowPlayingMovies} useAnimation />
         {queryConfig.map((category, index) => (
           <Showcase

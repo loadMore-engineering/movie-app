@@ -25,7 +25,7 @@ export default function BannerMeta({
           </div>
           <p className='w-1/2 mt-2 mb-4 opacity-90 hidden lg:block'>{overview}</p>
           <Button
-            className='watch-now-button text-sm md:text-base'
+            className='watch-now-button'
             title='Watch Now'
           />
         </div>

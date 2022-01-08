@@ -7,13 +7,13 @@ import Link from 'next/link'
 
 export default function CategoryTabs({
   categories,
-  setActiveIndex,
-  activeIndex,
+  setActiveCategory,
+  activeCategory,
 }) {
   const { push } = useRouter()
 
   const changeCategory = (index) => {
-    setActiveIndex(index)
+    setActiveCategory(index)
     push(`/${categories[index].type}?category=${index}`)
   }
 
@@ -29,7 +29,7 @@ export default function CategoryTabs({
           </a>
         </Link>
         <h1 className='text-4xl text-primary ml-3'>
-          {categories[activeIndex].title}
+          {categories[activeCategory].title}
         </h1>
       </span>
       <ul className='flex gap-2 sm:gap-3 my-2 text-xs sm:text-base flex-wrap'>
@@ -37,7 +37,7 @@ export default function CategoryTabs({
           <li key={category.title}>
             <Button
               className={clsx(
-                activeIndex === index
+                activeCategory === index
                   ? 'bg-primary text-primary bg-opacity-20 border-primary opacity-100'
                   : 'hover:bg-opacity-10 bg-opacity-0 border-white text-white opacity-50',
                 'rounded border bg-white py-0.5 px-2 text-sm transition-all',
@@ -54,6 +54,6 @@ export default function CategoryTabs({
 
 CategoryTabs.propTypes = {
   categories: PropTypes.array,
-  setActiveIndex: PropTypes.func,
-  activeIndex: PropTypes.number,
+  setActiveCategory: PropTypes.func,
+  activeCategory: PropTypes.number,
 }
