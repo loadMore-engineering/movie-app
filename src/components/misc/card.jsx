@@ -3,16 +3,18 @@ import Link from 'next/link'
 import { Photo } from '../common'
 import { CardMeta } from '.'
 
-export default function Card({
-  title,
-  img,
-  genres,
-  overview,
-  rating,
-  id,
-  type,
-}) {
+export default function Card(props) {
+  const {
+    title,
+    img,
+    genres,
+    overview,
+    rating,
+    id,
+    type,
+  } = props
   const path = type === 'movie' ? 'movie' : 'tv'
+
   return (
     <Link href={`/${path}/${id}`}>
       <a>

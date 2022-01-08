@@ -6,12 +6,15 @@ export default function useHorizontalScroll(id) {
     const functionListener = (evt) => {
       evt.preventDefault()
       if (element) {
-        // eslint-disable-next-line no-param-reassign
         element.scrollLeft += evt.deltaY
       }
     }
 
     element?.addEventListener('wheel', functionListener)
+
+    return () => {
+      element?.removeEventListener('wheel', functionListener)
+    }
   }, [id])
 
   return null

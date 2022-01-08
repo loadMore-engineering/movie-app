@@ -4,10 +4,11 @@ import { getMovieDetails, getMovieCasts, getSimilarMovie } from 'api/movies'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { CarouselImage } from 'components/section'
-import { Chip, Photo } from 'components/common'
+import { Button, Chip, Photo } from 'components/common'
 import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import toHourMinutes from 'utils/toHourMinutes'
-import { StarIcon } from '@heroicons/react/solid'
+import { StarIcon, HeartIcon, ShareIcon } from '@heroicons/react/solid'
+import { MovieActions } from 'components/misc'
 
 export default function MovieDetails(props) {
   const router = useRouter()
@@ -35,7 +36,7 @@ export default function MovieDetails(props) {
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <main className='pt-[100px]'>
+      <main className='md:pt-[100px]'>
         <div className='md:hidden'>
           <CarouselImage
             data={[movieDetails]}
@@ -53,7 +54,7 @@ export default function MovieDetails(props) {
                 src={movieDetails.poster_path}
               />
             </div>
-            <div className='p-4 pt-12 rounded text-sm bg-white bg-opacity-5 text-neutral-400 flex-grow'>
+            <div className='p-4 pt-8 rounded text-sm bg-white bg-opacity-5 text-neutral-400 flex-grow min-h-[450px] flex flex-col'>
               <article className='mb-6'>
                 <h1 className='text-3xl text-white font-bold'>
                   {movieDetails.title}&nbsp;
@@ -72,7 +73,7 @@ export default function MovieDetails(props) {
                 </div>
                 {movieDetails.overview}
               </article>
-              <div className='flex flex-col gap-y-1'>
+              <div className='flex flex-col gap-y-1 mb-2'>
                 <span>
                   <b>Release Date:</b> {movieDetails.release_date.replace(/-/g, '/')} ({movieDetails.production_countries[0]?.iso_3166_1})
                 </span>
@@ -81,23 +82,26 @@ export default function MovieDetails(props) {
                 </span>
                 <span>
                   <b>Homepage: </b>
-                  <a
-                    className='text-secondary hover:underline'
-                    href={movieDetails.homepage}
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    {movieDetails.homepage}
-                  </a>
+                  {movieDetails.homepage ? (
+                    <a
+                      className='text-secondary hover:underline'
+                      href={movieDetails.homepage}
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {movieDetails.homepage}
+                    </a>
+                  ) : '-'}
                 </span>
               </div>
+              <MovieActions />
             </div>
           </div>
           <h3 className='text-white text-lg my-4'>Top Billed Cast</h3>
-          <div className='flex w-full overflow-x-auto gap-2 scroll-hidden my-1' id={id}>
+          <div className='flex w-full overflow-x-auto gap-2 scroll-hidden my-1 text-xs sm:text-sm' id={id}>
             {movieCast.cast.map((cast) => (
               <div key={cast.cast_id}>
-                <div className='h-[150px] w-[120px] relative rounded overflow-hidden'>
+                <div className='h-[120px] w-[100px] sm:h-[150px] sm:w-[120px] relative rounded overflow-hidden'>
                   <Photo
                     alt={cast.name}
                     priority={false}
@@ -106,8 +110,8 @@ export default function MovieDetails(props) {
                   />
                 </div>
                 <div className='flex flex-col p-1'>
-                  <p className='text-secondary text-sm'>{cast.name}</p>
-                  <p className='text-white opacity-40 text-sm'>{cast.character}</p>
+                  <p className='text-secondary max-w-[90px] sm:max-w-[110px] text-ellipsis'>{cast.name}</p>
+                  <p className='text-white opacity-40 '>{cast.character}</p>
                 </div>
               </div>
             ))}
