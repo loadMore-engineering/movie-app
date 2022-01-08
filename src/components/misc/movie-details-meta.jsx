@@ -2,7 +2,7 @@ import { ExternalLinkIcon, StarIcon } from '@heroicons/react/solid'
 import { Chip } from 'components/common'
 import useTextEllipsis from 'hooks/useTextEllipsis'
 import PropTypes from 'prop-types'
-import toHourMinutes from 'utils/toHourMinutes'
+import numberToTime from 'utils/number-to-time'
 import MovieActions from './movie-actions'
 
 export default function MovieDetailsMeta(props) {
@@ -34,21 +34,23 @@ export default function MovieDetailsMeta(props) {
               <Chip key={genre.name} text={genre.name} />
             ))}
           </div>
-          {ellipsisText}
-          <button
-            className='inline text-secondary underline'
-            type='button'
-            onClick={isTruncated ? onShowMore : onCollapse}
-          >
-            {isTruncated ? 'show more' : 'collapse'}
-          </button>
+          <p>{ellipsisText}</p>
+          {overview.length > 200 && (
+            <button
+              className='inline text-secondary underline text-xs'
+              type='button'
+              onClick={isTruncated ? onShowMore : onCollapse}
+            >
+              {isTruncated ? 'show more' : 'collapse'}
+            </button>
+          )}
         </article>
         <div className='flex flex-col gap-y-1 mb-6 sm:mb-10'>
           <span>
             <b>Release Date:</b> {release_date.replace(/-/g, '/')} ({production_countries[0]?.iso_3166_1})
           </span>
           <span>
-            <b>Duration:</b> {toHourMinutes(runtime)}
+            <b>Duration:</b> {numberToTime(runtime)}
           </span>
           <span>
             <b>Status:</b> {status}

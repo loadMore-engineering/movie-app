@@ -8,7 +8,7 @@ export default function CategoryHeader({
 }) {
   return (
     <div className='flex justify-between items-end w-full my-3'>
-      <span className='text-xl text-white'>{title}</span>
+      <h3 className='text-xl text-white'>{title}</h3>
       <Link href={href}>
         <a className='group font-bold text-primary hover:underline'>
           More Movie

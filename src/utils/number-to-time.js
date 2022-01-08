@@ -1,4 +1,4 @@
-export default function toHourMinutes(num) {
+export default function numberToTime(num) {
   const hours = Math.floor(num / 60)
   const minutes = num % 60
 

@@ -28,6 +28,13 @@ export const getSimilarMovie = (id, page) => API({
   },
 })
 
+export const getMovieReviews = (id, page) => API({
+  path: `/movie/${id}/reviews`,
+  params: {
+    page,
+  },
+})
+
 export const getUpcomingMovie = (page) => API({
   path: '/movie/upcoming',
   params: {
