@@ -29,7 +29,7 @@ export default function CategoryTabs({
             />
           </a>
         </Link>
-        <h1 className='text-4xl text-primary ml-3'>
+        <h1 className='text-2xl md:text-4xl text-primary ml-3'>
           {categories[activeCategory].title}
         </h1>
       </span>

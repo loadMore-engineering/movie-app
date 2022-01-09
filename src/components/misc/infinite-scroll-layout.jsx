@@ -14,7 +14,12 @@ export default function InfiniteScrollLayout({ query }) {
 
   const queryMovie = useInfiniteQuery(
     [query.queryKey],
-    async ({ pageParam }) => query.queryFn((pageParam || 0) + 1),
+    async ({ pageParam }) => {
+      if (query.id) {
+        return query.queryFn(query.id, (pageParam || 0) + 1)
+      }
+      return query.queryFn((pageParam || 0) + 1)
+    },
     {
       getNextPageParam: ({ page }) => page,
     },
@@ -52,6 +57,7 @@ export default function InfiniteScrollLayout({ query }) {
           <Fragment key={dataPage.page}>
             {dataPage.results.map((dataMovie) => (
               <ShowcaseCard
+                cardHref={query?.cardHref}
                 genres={dataMovie.genre_ids}
                 id={dataMovie.id}
                 img={dataMovie.poster_path}
@@ -59,7 +65,6 @@ export default function InfiniteScrollLayout({ query }) {
                 overview={dataMovie.overview}
                 rating={dataMovie.vote_average}
                 title={dataMovie.name || dataMovie.title}
-                type={query?.type}
               />
             ))}
           </Fragment>

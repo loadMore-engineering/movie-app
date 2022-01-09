@@ -5,10 +5,13 @@ import { useQuery } from 'react-query'
 import { getTVShowSeasons } from 'api/tvs'
 import { useEffect, useState, useRef } from 'react'
 import { TvEpisode } from 'components/misc'
+import { Button } from 'components/common'
 
 export default function TvSeason(props) {
+  const INITIAL_DATA_DISPLAY_COUNT = 5
   const { seasons, id } = props
   const [seasonNumber, setSeasonNumber] = useState(seasons[0].season_number)
+  const [max, setMax] = useState(INITIAL_DATA_DISPLAY_COUNT)
   const scrollRef = useRef()
 
   const querySeason = useQuery(['TV_SEASON'], () => getTVShowSeasons(id, seasonNumber))
@@ -23,6 +26,7 @@ export default function TvSeason(props) {
   }, [id, seasons])
 
   useEffect(() => {
+    setMax(INITIAL_DATA_DISPLAY_COUNT)
     querySeason.refetch()
   }, [seasonNumber])
 
@@ -48,12 +52,27 @@ export default function TvSeason(props) {
         </select>
       </div>
       <div
-        className='flex flex-col gap-y-3 mt-3 xl:max-h-[575px] overflow-auto fancy-scroll sm:p-2'
+        className='flex flex-col gap-y-3 mt-3 max-h-[575px] overflow-auto fancy-scroll sm:p-2'
         ref={scrollRef}
       >
-        {!querySeason.isError && seasonDetails?.episodes?.map((episode, index) => (
+        {!querySeason.isError && seasonDetails?.episodes?.slice(0, max).map((episode, index) => (
           <TvEpisode episode={episode} key={index} />
         ))}
+        {Boolean(seasonDetails?.episodes?.length > INITIAL_DATA_DISPLAY_COUNT) && (
+          <Button
+            className='mx-auto min-w-max text-secondary hover:underline'
+            title={
+              max === INITIAL_DATA_DISPLAY_COUNT
+                ? `View all episodes (${seasonDetails?.episodes?.length})`
+                : 'Collapse'
+            }
+            onClick={
+              max === INITIAL_DATA_DISPLAY_COUNT
+                ? () => setMax(seasonDetails?.episodes?.length)
+                : () => setMax(INITIAL_DATA_DISPLAY_COUNT)
+            }
+          />
+        )}
       </div>
     </section>
   )

@@ -4,6 +4,7 @@ import InfiniteScrollLayout from 'components/misc/infinite-scroll-layout'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
+import Layout from 'components/layout'
 import queryConfig from '../../queryConfig'
 
 export default function Movie() {
@@ -24,7 +25,7 @@ export default function Movie() {
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <main className='pt-10 px-2'>
+      <main className='pt-[80px] px-2'>
         <CategoryTabs
           activeCategory={activeCategory}
           categories={movieCategory}
@@ -39,3 +40,9 @@ export default function Movie() {
     </div>
   )
 }
+
+Movie.getLayout = (page) => (
+  <Layout>
+    {page}
+  </Layout>
+)

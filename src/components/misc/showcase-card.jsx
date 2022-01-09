@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Photo } from '../common'
 import ShowcaseCardMeta from './showcase-card-meta'
 
-export default function Card(props) {
+export default function ShowcaseCard(props) {
   const {
     title,
     img,
@@ -11,12 +11,11 @@ export default function Card(props) {
     overview,
     rating,
     id,
-    type,
+    cardHref,
   } = props
-  const path = type === 'movie' ? 'movie' : 'tv'
 
   return (
-    <Link href={`/${path}/${id}`}>
+    <Link href={`${cardHref}/${id}`}>
       <a>
         <div className='relative group overflow-hidden max-w-full xl:min-w-[175px]'>
           <div className='absolute poster-overlay h-full w-full z-10' />
@@ -40,12 +39,12 @@ export default function Card(props) {
   )
 }
 
-Card.propTypes = {
+ShowcaseCard.propTypes = {
   title: PropTypes.string,
   genres: PropTypes.array,
   img: PropTypes.string,
   overview: PropTypes.string,
   rating: PropTypes.number,
   id: PropTypes.number,
-  type: PropTypes.string,
+  cardHref: PropTypes.string,
 }

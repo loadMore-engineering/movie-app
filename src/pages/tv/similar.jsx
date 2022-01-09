@@ -1,11 +1,14 @@
 import Head from 'next/head'
-import CategoryTabs from 'components/section/category-tabs'
 import InfiniteScrollLayout from 'components/misc/infinite-scroll-layout'
+import { useRouter } from 'next/router'
+import { getSimilarTVShow } from 'api/tvs'
 
 import Layout from 'components/layout'
-import queryConfig from '../../queryConfig'
+import CategoryTabs from 'components/section/category-tabs'
 
-export default function Tv() {
+export default function Similar() {
+  const { query: { id } } = useRouter()
+
   return (
     <div>
       <Head>
@@ -13,15 +16,22 @@ export default function Tv() {
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <main className='pt-[80px] px-2'>
+      <main className='md:pt-[80px] px-2'>
         <CategoryTabs
           activeCategory={0}
-          categories={[queryConfig[2]]}
+          categories={[{
+            title: 'Similar TV Show',
+          }]}
           hideTabs
         />
         <section className='max-w-screen-xl mx-auto'>
           <InfiniteScrollLayout
-            query={queryConfig[2]}
+            query={{
+              queryFn: getSimilarTVShow,
+              queryKey: 'TV_SIMILAR',
+              cardHref: '/tv',
+              id,
+            }}
           />
         </section>
       </main>
@@ -29,7 +39,7 @@ export default function Tv() {
   )
 }
 
-Tv.getLayout = (page) => (
+Similar.getLayout = (page) => (
   <Layout>
     {page}
   </Layout>

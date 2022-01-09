@@ -5,17 +5,20 @@ const queryConfig = [{
   queryFn: getUpcomingMovie,
   queryKey: 'UPCOMING',
   title: 'New Release',
-  type: 'movie',
+  indexHref: '/movie',
+  cardHref: '/movie',
 }, {
   queryFn: getPopularMovie,
   queryKey: 'POPULAR',
   title: 'Popular',
-  type: 'movie',
+  indexHref: '/movie',
+  cardHref: '/movie',
 }, {
   queryFn: getPopularTVShow,
   queryKey: 'TV_POPULAR',
   title: 'TV Show',
-  type: 'tv',
+  indexHref: '/tv',
+  cardHref: '/tv',
 }]
 
 export default queryConfig
