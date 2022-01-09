@@ -40,3 +40,7 @@ export const getTVShowReviews = (id, page) => API({
 export const getTVShowSeasons = (id, season) => API({
   path: `/tv/${id}/season/${season}`,
 })
+
+export const getTrailerVideos = (id) => API({
+  path: `/tv/${id}/videos`,
+})

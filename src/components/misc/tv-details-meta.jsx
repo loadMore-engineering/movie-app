@@ -3,12 +3,12 @@ import { Chip } from 'components/common'
 import useTextEllipsis from 'hooks/useTextEllipsis'
 import PropTypes from 'prop-types'
 import numberToTime from 'utils/number-to-time'
-import MovieActions from './actions'
+import Actions from './actions'
 
 export default function TvDetailsMeta(props) {
   const {
     overview, name, first_air_date, vote_average, genres, production_companies,
-    production_countries, episode_run_time, status, homepage,
+    production_countries, episode_run_time, status, homepage, showModal,
   } = props
   const MAX_TEXT_LENGTH = 200
   const {
@@ -72,7 +72,7 @@ export default function TvDetailsMeta(props) {
             <b>Production Companies:</b> {production_companies.map((company) => company.name).join`, `}
           </span>
         </div>
-        <MovieActions />
+        <Actions showModal={showModal} />
       </div>
     </div>
   )
@@ -92,4 +92,5 @@ TvDetailsMeta.propTypes = {
   ]),
   status: PropTypes.string,
   homepage: PropTypes.string,
+  showModal: PropTypes.func,
 }

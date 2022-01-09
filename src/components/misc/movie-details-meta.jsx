@@ -8,7 +8,7 @@ import Actions from './actions'
 export default function MovieDetailsMeta(props) {
   const {
     overview, title, release_date, vote_average, genres, production_companies,
-    production_countries, runtime, status, homepage,
+    production_countries, runtime, status, homepage, showModal,
   } = props
 
   const {
@@ -72,7 +72,7 @@ export default function MovieDetailsMeta(props) {
             <b>Production Companies:</b> {production_companies.map((company) => company.name).join`, `}
           </span>
         </div>
-        <Actions />
+        <Actions showModal={showModal} />
       </div>
     </div>
   )
@@ -89,4 +89,5 @@ MovieDetailsMeta.propTypes = {
   runtime: PropTypes.number,
   status: PropTypes.string,
   homepage: PropTypes.string,
+  showModal: PropTypes.func,
 }

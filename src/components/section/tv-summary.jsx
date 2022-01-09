@@ -3,7 +3,7 @@ import { TvDetailsMeta } from 'components/misc'
 import PropTypes from 'prop-types'
 
 export default function TvSummary(props) {
-  const { tvDetails } = props
+  const { tvDetails, showModal } = props
 
   return (
     <div className='flex gap-2'>
@@ -16,11 +16,12 @@ export default function TvSummary(props) {
           src={tvDetails.poster_path}
         />
       </div>
-      <TvDetailsMeta {...tvDetails} />
+      <TvDetailsMeta showModal={showModal} {...tvDetails} />
     </div>
   )
 }
 
 TvSummary.propTypes = {
   tvDetails: PropTypes.object,
+  showModal: PropTypes.func,
 }

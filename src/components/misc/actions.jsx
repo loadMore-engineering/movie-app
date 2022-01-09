@@ -3,7 +3,8 @@ import {
 } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import { Button } from 'components/common'
-import { Fragment } from 'react/cjs/react.production.min'
+import { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
 const buttonActions = [{
   title: 'Add to favorite',
@@ -22,13 +23,14 @@ const buttonActions = [{
   smTitle: 'Rate',
 }]
 
-export default function MovieActions() {
+export default function Actions({ showModal }) {
   return (
     <div className='mt-auto flex justify-between flex-wrap gap-2'>
       <Button
         className='bg-red-600 flex-center border border-red-600 p-2 rounded text-white hover:bg-opacity-80 transition-all'
         icon={<PlayIcon className='h-5 w-5 ml-2' />}
-        title='Watch now'
+        title='Watch Trailer'
+        onClick={showModal}
       />
       <div className='flex gap-x-2 text-sm justify-end'>
         {buttonActions.map(({
@@ -55,4 +57,8 @@ export default function MovieActions() {
       </div>
     </div>
   )
+}
+
+Actions.propTypes = {
+  showModal: PropTypes.func,
 }
