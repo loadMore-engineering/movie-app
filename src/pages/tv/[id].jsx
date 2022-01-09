@@ -10,6 +10,7 @@ import {
   TvSeason,
 } from 'components/section'
 import { FallbackMode } from 'components/common'
+import Layout from 'components/layout'
 
 export default function TvDetails(props) {
   const router = useRouter()
@@ -51,10 +52,14 @@ export default function TvDetails(props) {
           </div>
         </section>
         <Showcase
-          category={0}
+          cardHref='/tv'
           data={similarTvShow.results}
+          indexHref='/tv/similar'
+          params={{
+            category: 0,
+            id: router.query.id,
+          }}
           title='You might also like this!'
-          type='tv'
           uniqueId='similar_movie'
         />
       </main>
@@ -84,6 +89,12 @@ export async function getStaticPaths() {
     fallback: true,
   }
 }
+
+TvDetails.getLayout = (page) => (
+  <Layout>
+    {page}
+  </Layout>
+)
 
 TvDetails.propTypes = {
   data: PropTypes.array,

@@ -8,9 +8,11 @@ import CategoryHeader from './category-header'
 export default function Showcase({
   title,
   uniqueId,
-  category,
+  params,
   data,
   type,
+  indexHref,
+  cardHref,
 }) {
   const id = uniqueId.toLowerCase()
   const scrollRef = useRef()
@@ -28,8 +30,8 @@ export default function Showcase({
     <section className='w-full sm:max-w-screen-xl mx-auto mb-3 px-3'>
       <CategoryHeader
         href={{
-          pathname: `/${type}`,
-          query: { category },
+          pathname: indexHref,
+          query: { ...params },
         }}
         title={title}
       />
@@ -41,6 +43,7 @@ export default function Showcase({
         {data.map((movie) => (
           <div className='min-w-[175px]' key={movie.id}>
             <ShowcaseCard
+              cardHref={cardHref}
               genres={movie.genre_ids}
               id={movie.id}
               img={movie.poster_path}
@@ -59,7 +62,9 @@ export default function Showcase({
 Showcase.propTypes = {
   title: PropTypes.string.isRequired,
   uniqueId: PropTypes.string.isRequired,
-  category: PropTypes.number,
+  params: PropTypes.object,
   type: PropTypes.string,
+  indexHref: PropTypes.string,
+  cardHref: PropTypes.string,
   data: PropTypes.array,
 }

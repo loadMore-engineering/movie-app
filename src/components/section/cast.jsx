@@ -22,7 +22,7 @@ export default function Cast(props) {
 
   return (
     <section className='mt-8'>
-      <h3 className='text-white text-xl my-4'>Movie Cast ({casts.length})</h3>
+      <h3 className='text-white text-xl my-4'>Actors ({casts.length})</h3>
       <div
         className='flex w-full overflow-x-auto gap-2 fancy-scroll my-1 text-xs sm:text-sm'
         id={id}

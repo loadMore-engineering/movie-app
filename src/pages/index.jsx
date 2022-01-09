@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { CarouselImage, Showcase } from 'components/section'
 import { getNowPlayingMovie } from 'api/movies'
 import PropTypes from 'prop-types'
+import Layout from 'components/layout'
 import queryConfig from '../queryConfig'
 
 export default function Home(props) {
@@ -20,11 +21,14 @@ export default function Home(props) {
         <CarouselImage data={nowPlayingMovies} useAnimation />
         {queryConfig.map((category, index) => (
           <Showcase
-            category={index}
+            cardHref={category.cardHref}
             data={data?.[index + 1]?.value?.results}
+            indexHref={category.indexHref}
             key={category.title}
+            params={{
+              category: index,
+            }}
             title={category.title}
-            type={category.type}
             uniqueId={category.queryKey}
           />
         ))}
@@ -46,9 +50,15 @@ export async function getStaticProps() {
     props: {
       data: response,
     },
-    revalidate: 1000 * 60 * 60 * 12,
+    revalidate: 60 * 60 * 12,
   }
 }
+
+Home.getLayout = (page) => (
+  <Layout>
+    {page}
+  </Layout>
+)
 
 Home.propTypes = {
   data: PropTypes.array,

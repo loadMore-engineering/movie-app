@@ -9,6 +9,7 @@ import {
   CarouselImage, Cast, MovieSumamry, Showcase, Reviews,
 } from 'components/section'
 import { FallbackMode } from 'components/common'
+import Layout from 'components/layout'
 
 export default function MovieDetails(props) {
   const router = useRouter()
@@ -43,8 +44,13 @@ export default function MovieDetails(props) {
           <Cast casts={movieCast.cast} />
         </section>
         <Showcase
-          category={0}
+          cardHref='/movie'
           data={similarMovie.results}
+          indexHref='/movie/similar'
+          params={{
+            category: 0,
+            id: router.query?.id,
+          }}
           title='You might also like this!'
           type='movie'
           uniqueId='similar_movie'
@@ -76,6 +82,12 @@ export async function getStaticPaths() {
     fallback: true,
   }
 }
+
+MovieDetails.getLayout = (page) => (
+  <Layout>
+    {page}
+  </Layout>
+)
 
 MovieDetails.propTypes = {
   data: PropTypes.array,
