@@ -18,7 +18,7 @@ export default function ReviewCard({
   } = useTextEllipsis(content || '', 200)
 
   return (
-    <div className='mt-4'>
+    <div className='mb-3'>
       <div className='flex gap-3 items-center mb-4'>
         <div className='relative h-[35px] w-[35px] rounded-full overflow-hidden'>
           <Photo

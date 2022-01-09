@@ -23,7 +23,7 @@ export default function TvDetails(props) {
   if (router.isFallback) {
     return <FallbackMode />
   }
-  console.log(tvShowDetails)
+
   return (
     <div>
       <Head>
@@ -46,7 +46,7 @@ export default function TvDetails(props) {
               <Cast casts={tvShowCast.cast} />
             </div>
             <div className='xl:col-span-2'>
-              <TvSeason id={tvShowDetails.id} season={tvShowDetails.seasons} />
+              <TvSeason id={tvShowDetails.id} seasons={tvShowDetails.seasons} />
             </div>
           </div>
         </section>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import { Photo } from '../common'
-import { CardMeta } from '.'
+import ShowcaseCardMeta from './showcase-card-meta'
 
 export default function Card(props) {
   const {
@@ -28,7 +28,7 @@ export default function Card(props) {
               src={img}
             />
           </div>
-          <CardMeta
+          <ShowcaseCardMeta
             genres={genres}
             overview={overview}
             rating={rating}

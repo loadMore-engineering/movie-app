@@ -1,6 +1,6 @@
 export { default as CarouselMeta } from './carousel-meta'
 export { default as CarouselDetailsMeta } from './carousel-details-meta'
-export { default as CardMeta } from './showcase-card-meta'
+export { default as ShowcastCardMeta } from './showcase-card-meta'
 export { default as Actions } from './actions'
 export { default as MovieDetailsMeta } from './movie-details-meta'
 export { default as TvDetailsMeta } from './tv-details-meta'

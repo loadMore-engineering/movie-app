@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import GENRE from 'constant/genre'
 import { StarIcon } from '@heroicons/react/solid'
 import PropTypes from 'prop-types'
@@ -13,8 +14,8 @@ export default function CardMeta({
       <div className='flex flex-col h-[200px] justify-end'>
         <span className='text-white text-sm block group-hover:text-primary tracking-wide transition-all'>{title}</span>
         <div className='flex flex-wrap gap-1 mb-1'>
-          {genres.map((genre) => (
-            <Chip key={genre} size='sm' text={GENRE[genre]} />
+          {genres.map((genre, index) => (
+            <Chip key={index} size='sm' text={GENRE[genre]} />
           ))}
         </div>
         <div className='text-white text-xs flex items-center mb-1'>
