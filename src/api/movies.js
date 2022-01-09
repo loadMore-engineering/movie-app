@@ -48,3 +48,7 @@ export const getPopularMovie = (page) => API({
     page,
   },
 })
+
+export const getTrailerVideos = (id) => API({
+  path: `/movie/${id}/videos`,
+})

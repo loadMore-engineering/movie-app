@@ -3,7 +3,7 @@ import { MovieDetailsMeta } from 'components/misc'
 import PropTypes from 'prop-types'
 
 export default function MovieSummary(props) {
-  const { movieDetails } = props
+  const { movieDetails, showModal } = props
 
   return (
     <div className='flex gap-2'>
@@ -16,11 +16,15 @@ export default function MovieSummary(props) {
           src={movieDetails.poster_path}
         />
       </div>
-      <MovieDetailsMeta {...movieDetails} />
+      <MovieDetailsMeta
+        showModal={showModal}
+        {...movieDetails}
+      />
     </div>
   )
 }
 
 MovieSummary.propTypes = {
   movieDetails: PropTypes.object,
+  showModal: PropTypes.func,
 }

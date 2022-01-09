@@ -15,7 +15,7 @@ export default function CategoryTabs({
 
   const changeCategory = (index) => {
     setActiveCategory(index)
-    push(`/${categories[index].type}?category=${index}`)
+    push(`${categories[index].indexHref}?category=${index}`)
   }
 
   return (

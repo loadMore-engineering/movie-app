@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import {
   getTVShowDetails, getSimilarTVShow, getTVShowCasts, getTVShowReviews,
+  getTrailerVideos,
 } from 'api/tvs'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
@@ -9,10 +10,12 @@ import {
   CarouselImage, Cast, Showcase, Reviews, TvSumamry,
   TvSeason,
 } from 'components/section'
-import { FallbackMode } from 'components/common'
+import { FallbackMode, Modal } from 'components/common'
 import Layout from 'components/layout'
+import { useState } from 'react'
 
 export default function TvDetails(props) {
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const router = useRouter()
   const { data } = props
 
@@ -20,6 +23,7 @@ export default function TvDetails(props) {
   const tvShowCast = data?.[1]?.value
   const similarTvShow = data?.[2]?.value
   const tvShowReviews = data?.[3]?.value
+  const tvTrailers = data?.[4]?.value
 
   if (router.isFallback) {
     return <FallbackMode />
@@ -40,7 +44,10 @@ export default function TvDetails(props) {
           />
         </div>
         <section className='max-w-screen-xl mx-auto p-3 text-white'>
-          <TvSumamry tvDetails={tvShowDetails} />
+          <TvSumamry
+            showModal={() => setIsModalVisible(true)}
+            tvDetails={tvShowDetails}
+          />
           <div className='xl:grid xl:grid-cols-6 flex flex-col-reverse gap-3 mt-4'>
             <div className='xl:col-span-4 xl:pr-3'>
               <Reviews data={tvShowReviews.results} />
@@ -63,6 +70,11 @@ export default function TvDetails(props) {
           uniqueId='similar_movie'
         />
       </main>
+      <Modal
+        closeModal={() => setIsModalVisible()}
+        data={tvTrailers.results}
+        isModalVisible={isModalVisible}
+      />
     </div>
   )
 }
@@ -74,6 +86,7 @@ export async function getStaticProps({ params }) {
     getTVShowCasts({ queryKey: ['MOVIE_CAST', { id }] }),
     getSimilarTVShow(id, 1),
     getTVShowReviews(id, 1),
+    getTrailerVideos(id),
   ])
 
   return {
