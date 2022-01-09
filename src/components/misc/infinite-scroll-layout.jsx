@@ -6,7 +6,7 @@ import { Button, UglySpinner } from 'components/common'
 import { Fragment, useEffect, useMemo } from 'react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import { useInfiniteQuery } from 'react-query'
-import Card from './movie-card'
+import ShowcaseCard from './showcase-card'
 
 export default function InfiniteScrollLayout({ query }) {
   const { visible, scrollToTop } = useScrollToTop()
@@ -51,7 +51,7 @@ export default function InfiniteScrollLayout({ query }) {
         {dataPages.map((dataPage) => (
           <Fragment key={dataPage.page}>
             {dataPage.results.map((dataMovie) => (
-              <Card
+              <ShowcaseCard
                 genres={dataMovie.genre_ids}
                 id={dataMovie.id}
                 img={dataMovie.poster_path}

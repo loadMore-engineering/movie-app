@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import { Photo, Button } from '../common'
-import { BannerMeta, BannerDetailsMeta } from '../misc'
+import { CarouselMeta, CarouselDetailsMeta } from '../misc'
 
 const settings = {
   autoplay: true,
@@ -55,17 +55,17 @@ export default function CarouselImage({
           <div className='banner-image relative overflow-hidden' key={item.id}>
             <div className='banner-image absolute banner-overlay z-10' />
             {isInDetailPage ? (
-              <BannerDetailsMeta {...item} />
+              <CarouselDetailsMeta {...item} />
             ) : (
-              <BannerMeta
+              <CarouselMeta
                 genres={item.genre_ids}
                 overview={item.overview}
                 rating={item.vote_average}
-                title={item.title}
+                title={item.title || item.name}
               />
             )}
             <Photo
-              alt={item.title}
+              alt={item.title || item.name}
               className={useAnimation ? 'animated transition-all' : ''}
               id={useAnimation ? `photo${index}` : ''}
               size='/original'

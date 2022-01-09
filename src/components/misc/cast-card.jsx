@@ -10,8 +10,8 @@ export default function CastCard({
   const { ellipsisText } = useTextEllipsis(character, 20)
 
   return (
-    <div>
-      <div className='h-[120px] w-[100px] sm:h-[150px] sm:w-[120px] relative rounded overflow-hidden'>
+    <div className=' min-w-[100px] sm:min-w-[120px] rounded overflow-hidden'>
+      <div className='relative w-full min-h-[120px] sm:min-h-[170px]'>
         <Photo
           alt={name}
           priority={false}
@@ -19,7 +19,7 @@ export default function CastCard({
           src={profile_path}
         />
       </div>
-      <div className='flex flex-col p-1'>
+      <div className='flex flex-col p-1 pb-3'>
         <span className='text-secondary max-w-[90px] sm:max-w-[110px] text-ellipsis'>{name}</span>
         <span className='text-white opacity-40' title={character}>{ellipsisText}</span>
       </div>
