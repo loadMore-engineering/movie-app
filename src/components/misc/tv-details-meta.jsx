@@ -3,12 +3,12 @@ import { Chip } from 'components/common'
 import useTextEllipsis from 'hooks/useTextEllipsis'
 import PropTypes from 'prop-types'
 import numberToTime from 'utils/number-to-time'
-import Actions from './actions'
+import MovieActions from './actions'
 
-export default function MovieDetailsMeta(props) {
+export default function TvDetailsMeta(props) {
   const {
-    overview, title, release_date, vote_average, genres, production_companies,
-    production_countries, runtime, status, homepage,
+    overview, name, first_air_date, vote_average, genres, production_companies,
+    production_countries, episode_run_time, status, homepage,
   } = props
 
   const {
@@ -23,7 +23,7 @@ export default function MovieDetailsMeta(props) {
       <div className=' fancy-scroll p-1 flex flex-col overflow-auto h-full'>
         <article className='mb-6'>
           <h1 className='text-3xl text-white font-bold hidden md:flex'>
-            {title} ({new Date(release_date).getFullYear()})
+            {name}
           </h1>
           <div className='md:flex hidden items-center flex-wrap gap-1 my-3'>
             <div className='lg:mb-0 flex text-sm items-center mr-2'>
@@ -47,10 +47,10 @@ export default function MovieDetailsMeta(props) {
         </article>
         <div className='flex flex-col gap-y-1 mb-6 sm:mb-10'>
           <span>
-            <b>Release Date:</b> {release_date.replace(/-/g, '/')} ({production_countries[0]?.iso_3166_1})
+            <b>Release Date:</b> {first_air_date.replace(/-/g, '/')} ({production_countries[0]?.iso_3166_1 || 'Universal'})
           </span>
           <span>
-            <b>Duration:</b> {numberToTime(runtime)}
+            <b>Duration:</b> {numberToTime(episode_run_time[0] || 0)}
           </span>
           <span>
             <b>Status:</b> {status}
@@ -72,21 +72,24 @@ export default function MovieDetailsMeta(props) {
             <b>Production Companies:</b> {production_companies.map((company) => company.name).join`, `}
           </span>
         </div>
-        <Actions />
+        <MovieActions />
       </div>
     </div>
   )
 }
 
-MovieDetailsMeta.propTypes = {
+TvDetailsMeta.propTypes = {
   overview: PropTypes.string,
-  title: PropTypes.string,
-  release_date: PropTypes.string,
+  name: PropTypes.string,
+  first_air_date: PropTypes.string,
   vote_average: PropTypes.number,
   genres: PropTypes.array,
   production_companies: PropTypes.array,
   production_countries: PropTypes.array,
-  runtime: PropTypes.number,
+  episode_run_time: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.array,
+  ]),
   status: PropTypes.string,
   homepage: PropTypes.string,
 }

@@ -6,7 +6,7 @@ export default function MovieReviews(props) {
 
   return (
     <section className='bg-white bg-opacity-5 p-2 mt-3'>
-      <h3 className='text-white text-xl border-b border-gray-600 p-3'>Reviews ({data.length})</h3>
+      <h3 className='text-white text-xl border-b border-gray-600 p-2'>Reviews ({data.length})</h3>
       <div className='overflow-y-auto fancy-scroll max-h-[500px] p-4'>
         {data.map((review) => (
           <ReviewCard

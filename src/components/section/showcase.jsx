@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
-import Card from 'components/misc/movie-card'
+import ShowcaseCard from 'components/misc/showcase-card'
 import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import { useRouter } from 'next/router'
 import CategoryHeader from './category-header'
@@ -40,7 +40,7 @@ export default function Showcase({
       >
         {data.map((movie) => (
           <div className='min-w-[175px]' key={movie.id}>
-            <Card
+            <ShowcaseCard
               genres={movie.genre_ids}
               id={movie.id}
               img={movie.poster_path}

@@ -20,7 +20,7 @@ export default function MovieCast(props) {
   }, [router.asPath])
 
   return (
-    <section>
+    <section className='mt-8'>
       <h3 className='text-white text-xl my-4'>Movie Cast ({casts.length})</h3>
       <div
         className='flex w-full overflow-x-auto gap-2 fancy-scroll my-1 text-xs sm:text-sm'
@@ -30,7 +30,7 @@ export default function MovieCast(props) {
         {casts.map((cast) => (
           <CastCard
             character={cast.character}
-            key={cast.cast_id}
+            key={cast.cast_id || cast.id}
             name={cast.name}
             profile_path={cast.profile_path}
           />
