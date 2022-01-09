@@ -2,13 +2,10 @@ import { XIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import Button from './button'
 
 export default function Modal({ data, isModalVisible, closeModal }) {
   const [activeIndex, setActiveIndex] = useState(0)
-  const id = 'trailer-list'
-  useHorizontalScroll(id)
 
   useEffect(() => {
     const overlay = document.getElementById('overlay')
@@ -27,6 +24,7 @@ export default function Modal({ data, isModalVisible, closeModal }) {
     setTimeout(() => {
       closeModal()
       overlay.style.display = 'none'
+      setActiveIndex(0)
       document.body.style.overflowY = 'auto'
     }, 300)
   }
@@ -39,10 +37,7 @@ export default function Modal({ data, isModalVisible, closeModal }) {
       <div className='relative w-full h-full'>
         {isModalVisible && (
           <section className='h-[275px] sm:h-[375px] md:h-[500px] bg-transparent max-w-screen-md mx-auto mt-[200px] sm:mt-[175px] relative rounded'>
-            <nav
-              className='flex gap-x-2 opacity-80 absolute -bottom-14 sm:-bottom-16 left-0 p-2 w-full overflow-x-auto fancy-scroll'
-              id={id}
-            >
+            <nav className='flex gap-x-2 opacity-80 absolute -bottom-14 sm:-bottom-16 left-0 p-2 w-full overflow-x-auto fancy-scroll'>
               <div className='flex gap-x-2'>
                 {data.map((video, index) => (
                   <Button
@@ -69,7 +64,7 @@ export default function Modal({ data, isModalVisible, closeModal }) {
               className='w-full absolute bottom-0 left-0'
               frameBorder='0'
               height='100%'
-              src={`https://www.youtube.com/embed/${data[activeIndex].key}`}
+              src={`https://www.youtube.com/embed/${data[activeIndex]?.key}`}
               title='Embedded youtube'
             />
           </section>
