@@ -1,10 +1,11 @@
+/* eslint-disable react/no-array-index-key */
 import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { CastCard } from 'components/misc'
 
-export default function MovieCast(props) {
+export default function Cast(props) {
   const { casts } = props
   const scrollRef = useRef()
   const id = 'cast'
@@ -27,10 +28,10 @@ export default function MovieCast(props) {
         id={id}
         ref={scrollRef}
       >
-        {casts.map((cast) => (
+        {casts.map((cast, index) => (
           <CastCard
             character={cast.character}
-            key={cast.cast_id || cast.id}
+            key={index}
             name={cast.name}
             profile_path={cast.profile_path}
           />
@@ -40,6 +41,6 @@ export default function MovieCast(props) {
   )
 }
 
-MovieCast.propTypes = {
+Cast.propTypes = {
   casts: PropTypes.array,
 }

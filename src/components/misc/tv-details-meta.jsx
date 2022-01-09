@@ -10,13 +10,13 @@ export default function TvDetailsMeta(props) {
     overview, name, first_air_date, vote_average, genres, production_companies,
     production_countries, episode_run_time, status, homepage,
   } = props
-
+  const MAX_TEXT_LENGTH = 200
   const {
     ellipsisText,
     onCollapse,
     onShowMore,
     isTruncated,
-  } = useTextEllipsis(overview || '', 200)
+  } = useTextEllipsis(overview || '', MAX_TEXT_LENGTH)
 
   return (
     <div className='p-2 rounded text-sm md:pt-8 bg-white bg-opacity-5 text-neutral-400 flex-grow min-h-[350px] md:h-[450px]'>
@@ -35,7 +35,7 @@ export default function TvDetailsMeta(props) {
             ))}
           </div>
           <p>{ellipsisText}</p>
-          {overview.length > 200 && (
+          {overview.length > MAX_TEXT_LENGTH && (
             <button
               className='inline text-secondary underline text-xs'
               type='button'
