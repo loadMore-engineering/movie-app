@@ -3,6 +3,7 @@ import Head from 'next/head'
 import {
   getTVShowDetails, getSimilarTVShow, getTVShowCasts, getTVShowReviews,
   getTrailerVideos,
+  getTVShowSeasons,
 } from 'api/tvs'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
@@ -13,6 +14,8 @@ import {
 import { FallbackMode, Modal } from 'components/common'
 import Layout from 'components/layout'
 import { useState } from 'react'
+import { QueryClient } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
 
 export default function TvDetails(props) {
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -89,9 +92,13 @@ export async function getStaticProps({ params }) {
     getTrailerVideos(id),
   ])
 
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(['TV_SEASON'], () => getTVShowSeasons(id, 1))
+
   return {
     props: {
       data: response,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }
