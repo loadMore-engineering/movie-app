@@ -6,6 +6,7 @@ import { getTVShowSeasons } from 'api/tvs'
 import { useEffect, useState, useRef } from 'react'
 import { TvEpisode } from 'components/misc'
 import { Button } from 'components/common'
+import { useRouter } from 'next/router'
 
 export default function TvSeason(props) {
   const INITIAL_DATA_DISPLAY_COUNT = 5
@@ -13,8 +14,18 @@ export default function TvSeason(props) {
   const [seasonNumber, setSeasonNumber] = useState(seasons[0].season_number)
   const [max, setMax] = useState(INITIAL_DATA_DISPLAY_COUNT)
   const scrollRef = useRef()
+  const router = useRouter()
 
-  const querySeason = useQuery(['TV_SEASON'], () => getTVShowSeasons(id, seasonNumber))
+  const querySeason = useQuery(['TV_SEASON'], () => getTVShowSeasons(id, seasonNumber), {
+    onError: () => {
+      if (seasonNumber === 1) {
+        setSeasonNumber(0)
+      } else {
+        setSeasonNumber(1)
+      }
+    },
+    retry: false,
+  })
   const seasonDetails = querySeason?.data || {}
 
   useEffect(() => {
@@ -28,7 +39,7 @@ export default function TvSeason(props) {
   useEffect(() => {
     setMax(INITIAL_DATA_DISPLAY_COUNT)
     querySeason.refetch()
-  }, [seasonNumber])
+  }, [seasonNumber, router.query.id])
 
   return (
     <section className='bg-white bg-opacity-5 p-2 xl:pr-2 w-full mt-3'>
