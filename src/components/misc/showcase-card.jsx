@@ -23,7 +23,7 @@ export default function ShowcaseCard(props) {
             <StarIcon className='h-4 w-4 text-yellow-400 mr-1' />
             {rating.toFixed(1)}
           </div>
-          <div className='relative h-[225px] group-hover:scale-110 transition-transform'>
+          <div className='relative h-[250px] group-hover:scale-110 transition-transform'>
             <Photo
               alt={title}
               priority={false}

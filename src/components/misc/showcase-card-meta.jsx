@@ -8,10 +8,10 @@ export default function CardMeta({
   title,
 }) {
   return (
-    <div className='absolute top-[8.5%] left-2 z-10'>
-      <div className='flex flex-col h-[200px] justify-end'>
+    <div className='absolute w-full bottom-0 z-10'>
+      <div className='flex flex-col h-[200px] justify-end gap-y-1.5 p-1.5'>
         <span className='text-white text-sm group-hover:text-third tracking-wide transition-all'>{title}</span>
-        <div className='flex flex-wrap gap-1 mb-1'>
+        <div className='flex flex-wrap gap-1'>
           {genres.map((genre, index) => (
             <Chip key={index} size='sm' text={GENRE[genre]} />
           ))}
