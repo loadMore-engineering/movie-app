@@ -11,6 +11,7 @@ const settings = {
   lazyLoad: true,
   infinite: true,
   pauseOnHover: false,
+  arrows: false,
   fade: true,
   speed: 500,
   autoplaySpeed: 3500,
@@ -47,33 +48,35 @@ export default function CarouselImage({
           onClick={() => router.back()}
         />
       )}
-      <Slider
-        ref={slider}
-        {...settings}
-      >
-        {data.map((item, index) => (
-          <div className='banner-image relative overflow-hidden' key={item.id}>
-            <div className='banner-image absolute banner-overlay z-10' />
-            {isInDetailPage ? (
-              <CarouselDetailsMeta {...item} />
-            ) : (
-              <CarouselMeta
-                genres={item.genre_ids}
-                overview={item.overview}
-                rating={item.vote_average}
-                title={item.title || item.name}
+      <div className='mx-auto max-w-screen-xl md:mt-[80px]'>
+        <Slider
+          ref={slider}
+          {...settings}
+        >
+          {data.map((item, index) => (
+            <div className='banner-image relative overflow-hidden' key={item.id}>
+              <div className='banner-image absolute banner-overlay z-10' />
+              {isInDetailPage ? (
+                <CarouselDetailsMeta {...item} />
+              ) : (
+                <CarouselMeta
+                  genres={item.genre_ids}
+                  overview={item.overview}
+                  rating={item.vote_average}
+                  title={item.title || item.name}
+                />
+              )}
+              <Photo
+                alt={item.title || item.name}
+                className={useAnimation ? 'animated transition-all' : ''}
+                id={useAnimation ? `photo${index}` : ''}
+                size='/original'
+                src={item.backdrop_path}
               />
-            )}
-            <Photo
-              alt={item.title || item.name}
-              className={useAnimation ? 'animated transition-all' : ''}
-              id={useAnimation ? `photo${index}` : ''}
-              size='/original'
-              src={item.backdrop_path}
-            />
-          </div>
-        ))}
-      </Slider>
+            </div>
+          ))}
+        </Slider>
+      </div>
       {!isInDetailPage && (
         <div className='absolute h-1/2 w-full top-0 hidden md:block'>
           <div className='max-w-screen-2xl h-full mx-auto flex justify-between items-end'>

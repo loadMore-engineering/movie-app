@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { CarouselImage, Showcase } from 'components/section'
+import { CarouselImage } from 'components/section'
+import Showcase from 'components/v2/section/showcase'
 import { getNowPlayingMovie } from 'api/movies'
 import PropTypes from 'prop-types'
 import Layout from 'components/layout'

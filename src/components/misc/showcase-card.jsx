@@ -8,7 +8,6 @@ export default function ShowcaseCard(props) {
     title,
     img,
     genres,
-    overview,
     rating,
     id,
     cardHref,
@@ -29,7 +28,6 @@ export default function ShowcaseCard(props) {
           </div>
           <ShowcaseCardMeta
             genres={genres}
-            overview={overview}
             rating={rating}
             title={title}
           />
@@ -43,7 +41,6 @@ ShowcaseCard.propTypes = {
   title: PropTypes.string,
   genres: PropTypes.array,
   img: PropTypes.string,
-  overview: PropTypes.string,
   rating: PropTypes.number,
   id: PropTypes.number,
   cardHref: PropTypes.string,

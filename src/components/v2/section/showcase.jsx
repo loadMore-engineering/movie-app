@@ -17,7 +17,7 @@ export default function Showcase({
   const id = uniqueId.toLowerCase()
   const scrollRef = useRef()
   const router = useRouter()
-  useHorizontalScroll(id)
+  // useHorizontalScroll(id)
 
   useEffect(() => {
     scrollRef.current.scrollTo({
@@ -36,12 +36,12 @@ export default function Showcase({
         title={title}
       />
       <div
-        className='flex overflow-x-auto fancy-scroll gap-x-4 gap-y-2 pb-2'
+        className='gap-2 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 mb-10'
         id={id}
         ref={scrollRef}
       >
         {data.map((movie) => (
-          <div className='min-w-[175px]' key={movie.id}>
+          <div key={movie.id}>
             <ShowcaseCard
               cardHref={cardHref}
               genres={movie.genre_ids}
