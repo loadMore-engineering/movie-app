@@ -26,7 +26,7 @@ export default function TvEpisode(props) {
       </div>
       <div>
         <span
-          className='text-xs sm:text-sm md:text-base xl:text-sm font-bold'
+          className='text-xs sm:text-sm md:text-base xl:text-sm'
           title={`${episode.name} - ${reviewDateFormat(episode.air_date)}`}
         >
           {episode.episode_number} - {episode.name}

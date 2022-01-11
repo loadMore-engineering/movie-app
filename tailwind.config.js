@@ -11,6 +11,11 @@ module.exports = {
         third: '#13FEFE',
         baseLayer: '#202020',
       },
+      fontFamily: {
+        'pt-sans': ['"PT Sans"'],
+        poppins: ['Poppins'],
+        body: ['Poppins'],
+      },
     },
   },
   plugins: [],

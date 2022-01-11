@@ -16,9 +16,10 @@ function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page)
   return getLayout(
     <Provider>
-      <img className='bg-image' src='/void.svg' />
+      <img className='bg-image' src='/void-dark.svg' />
+      {/* <img className='bg-image' src='/void-light.svg' /> */}
       <div className='w-full h-full fixed top-0 backdrop-blur-3xl z-[-1]' />
-      <div className='w-full h-full fixed top-0 bg-black opacity-70 z-[-1]' />
+      {/* <div className='w-full h-full fixed top-0 bg-black opacity-10 z-[-1]' /> */}
       <Component {...pageProps} />
     </Provider>,
   )

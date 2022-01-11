@@ -62,14 +62,14 @@ export default function TvSeason(props) {
           onChange={({ target }) => setSeasonNumber(target.value)}
         >
           {seasons.map((season, index) => (
-            <option className='p-2' key={index} value={season.season_number}>Season {index + 1}</option>
+            <option className='p-2 bg-[#191933]' key={index} value={season.season_number}>Season {index + 1}</option>
           ))}
         </select>
       </div>
       <div
         className={clsx(
           'flex flex-col gap-y-3 mt-3 overflow-auto fancy-scroll sm:p-2',
-          showViewAllButton ? 'max-h-[460px]' : 'max-h-[510px]',
+          showViewAllButton ? 'max-h-[500px]' : 'max-h-[550px]',
         )}
         ref={scrollRef}
       >
@@ -80,7 +80,7 @@ export default function TvSeason(props) {
       {showViewAllButton && (
         <div className='py-1 pt-2 flex-center'>
           <Button
-            className='text-white hover:bg-opacity-50 py-2 bg-pink-500 bg-opacity-70 w-full transition-all text-sm sm:text-base rounded'
+            className='text-white hover:bg-opacity-50 py-2 bg-secondary bg-opacity-70 w-full transition-all text-sm sm:text-base rounded'
             title={`View all episodes (${seasonDetails?.episodes?.length})`}
             onClick={() => setMax(seasonDetails?.episodes?.length)}
           />

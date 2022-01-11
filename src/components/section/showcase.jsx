@@ -17,7 +17,7 @@ export default function Showcase({
   const id = uniqueId.toLowerCase()
   const scrollRef = useRef()
   const router = useRouter()
-  useHorizontalScroll(id)
+  useHorizontalScroll(id, data.length)
 
   useEffect(() => {
     scrollRef.current.scrollTo({

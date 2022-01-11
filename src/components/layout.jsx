@@ -11,11 +11,12 @@ export default function Layout({ children }) {
             <a className='flex items-end'>
               <Image
                 alt='Rebelworks'
+                className='object-cover'
                 height={40}
-                src='/rebelworks.png'
+                src='/loadmore_.png'
                 width={40}
               />
-              <span className='text-white text-xl translate-x-2 translate-y-1'>RebelWorks - Mini Project ✨</span>
+              <span className='text-white text-2xl translate-x-2 translate-y-1 font-pt-sans'>loadMore_ ✨</span>
             </a>
           </Link>
         </div>

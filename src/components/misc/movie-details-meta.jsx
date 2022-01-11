@@ -22,7 +22,7 @@ export default function MovieDetailsMeta(props) {
     <div className='p-2 rounded text-sm md:pt-8 bg-white bg-opacity-5 text-neutral-400 flex-grow min-h-[350px] md:h-[450px]'>
       <div className=' fancy-scroll p-1 flex flex-col overflow-auto h-full'>
         <article className='mb-6'>
-          <h1 className='text-3xl text-white font-bold hidden md:flex'>
+          <h1 className='text-3xl text-white font-bold hidden md:flex font-pt-sans'>
             {title} ({new Date(release_date).getFullYear()})
           </h1>
           <div className='md:flex hidden items-center flex-wrap gap-1 my-3'>

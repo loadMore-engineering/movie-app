@@ -17,8 +17,6 @@ export default function Cast(props) {
   const id = 'cast'
   const router = useRouter()
 
-  useHorizontalScroll(id)
-
   useEffect(() => {
     scrollRef.current.scrollTo({
       left: 0,
@@ -32,6 +30,7 @@ export default function Cast(props) {
   )
 
   const showViewMoreButton = !isShowedAll && casts.length > INITIAL_DISPLAYED_DATA
+  useHorizontalScroll(id, displayedData.length)
 
   return (
     <section className='mt-8'>
