@@ -10,7 +10,7 @@ export default function CategoryHeader({
     <div className='flex justify-between items-end w-full my-3'>
       <h3 className='sm:text-xl text-white'>{title}</h3>
       <Link href={href}>
-        <a className='group font-bold text-primary hover:underline'>
+        <a className='group font-bold text-third hover:underline'>
           View more
           <ChevronRightIcon className='h-5 w-5 inline-flex slide-entrance' />
         </a>

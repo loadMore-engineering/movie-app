@@ -48,7 +48,7 @@ export default function CarouselImage({
           onClick={() => router.back()}
         />
       )}
-      <div className='mx-auto max-w-screen-xl md:mt-[80px]'>
+      <div className='mx-auto max-w-[1150px] md:mt-[80px]'>
         <Slider
           ref={slider}
           {...settings}
@@ -79,15 +79,15 @@ export default function CarouselImage({
       </div>
       {!isInDetailPage && (
         <div className='absolute h-1/2 w-full top-0 hidden md:block'>
-          <div className='max-w-screen-2xl h-full mx-auto flex justify-between items-end'>
+          <div className='max-w-screen-xl h-full mx-auto flex justify-between items-end'>
             <Button
               className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
-              icon={<ChevronLeftIcon className='h-7 w-7 text-white' />}
+              icon={<ChevronLeftIcon className='h-7 w-7 text-third' />}
               onClick={() => slide('prev')}
             />
             <Button
               className='p-2 bg-black bg-opacity-10 rounded-full hover:bg-opacity-30 transition-all'
-              icon={<ChevronRightIcon className='h-7 w-7 text-white' />}
+              icon={<ChevronRightIcon className='h-7 w-7 text-third' />}
               onClick={() => slide('next')}
             />
           </div>

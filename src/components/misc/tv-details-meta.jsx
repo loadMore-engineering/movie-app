@@ -27,7 +27,7 @@ export default function TvDetailsMeta(props) {
           </h1>
           <div className='md:flex hidden items-center flex-wrap gap-1 my-3'>
             <div className='lg:mb-0 flex text-sm items-center mr-2'>
-              <StarIcon className='h-4 w-4 text-primary mr-1' />
+              <StarIcon className='h-4 w-4 text-yellow-400 mr-1' />
               {vote_average}
             </div>
             {genres.map((genre) => (

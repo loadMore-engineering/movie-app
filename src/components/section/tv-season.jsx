@@ -47,7 +47,7 @@ export default function TvSeason(props) {
 
   return (
     <section className='bg-white bg-opacity-5 p-2 xl:pr-2 w-full mt-3'>
-      <div className='flex justify-between items-center bg-baseLayer'>
+      <div className='flex justify-between items-center'>
         {querySeason.isError && (
           <div className='flex-center text-red-500 p-2.5'>
             An error occured!
@@ -56,7 +56,7 @@ export default function TvSeason(props) {
         {querySeason.isFetching && !querySeason.isError && <span className='p-2.5'>Loading..</span>}
         {!querySeason.isFetching && !querySeason.isError && <h3 className='text-sm sm:text-xl p-2'>Episodes ({seasonDetails?.episodes?.length})</h3>}
         <select
-          className='w-[140px] mr-2 bg-baseLayer p-1 my-1 border border-gray-600 rounded text-white outline-none text-xs sm:text-base'
+          className='w-[140px] mr-2 bg-transparent p-1 my-1 border border-gray-600 rounded text-white outline-none text-xs sm:text-base'
           disabled={querySeason.isFetching}
           value={seasonNumber}
           onChange={({ target }) => setSeasonNumber(target.value)}

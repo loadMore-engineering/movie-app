@@ -24,7 +24,7 @@ export default function Similar() {
           }]}
           hideTabs
         />
-        <section className='max-w-screen-xl mx-auto'>
+        <section className='max-w-[1150px] mx-auto'>
           <InfiniteScrollLayout
             query={{
               queryFn: getSimilarTVShow,

@@ -42,7 +42,7 @@ export default function MovieDetails(props) {
             isInDetailPage
           />
         </div>
-        <section className='max-w-screen-xl mx-auto p-3 text-white'>
+        <section className='max-w-[1150px] mx-auto p-3 text-white'>
           <MovieSumamry
             movieDetails={movieDetails}
             showModal={() => setIsModalVisible(true)}

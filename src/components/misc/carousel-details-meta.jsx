@@ -13,7 +13,7 @@ export default function BannerMeta({
   const releaseDate = new Date(release_date || first_air_date).getFullYear()
   return (
     <div className='absolute top-0 left-0 w-full h-full flex items-end z-10 bg-opacity-50'>
-      <div className='px-3 xl:max-w-screen-xl mx-auto flex-grow mb-1 xl:mb-[150px]'>
+      <div className='px-3 xl:max-w-[1150px] mx-auto flex-grow mb-1 xl:mb-[150px]'>
         <div className='flex flex-col h-[200px] justify-end text-white'>
           <span className='text-xl sm:text-3xl md:text-5xl font-semibold block mb-1 md:w-1/2'>{title || name}</span>
           <div className='flex flex-wrap gap-1 mb-1'>
@@ -22,7 +22,7 @@ export default function BannerMeta({
             ))}
           </div>
           <div className='lg:mb-0 flex text-sm items-center'>
-            <StarIcon className='h-4 w-4 text-primary mr-1' />
+            <StarIcon className='h-4 w-4 text-yellow-400 mr-1' />
             {vote_average}
             <span className='text-xs ml-2'>Release Year: {releaseDate}</span>
           </div>

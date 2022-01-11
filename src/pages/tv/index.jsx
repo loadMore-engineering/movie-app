@@ -19,7 +19,7 @@ export default function Tv() {
           categories={[queryConfig[2]]}
           hideTabs
         />
-        <section className='max-w-screen-xl mx-auto'>
+        <section className='max-w-[1150px] mx-auto'>
           <InfiniteScrollLayout
             query={queryConfig[2]}
           />

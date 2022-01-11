@@ -50,7 +50,7 @@ body {
 }
 
 .watch-now-button {
-  @apply py-1 md:py-2 md:text-base text-sm text-primary border hover:bg-primary border-primary rounded-full w-[105px] md:w-[150px] hover:bg-opacity-10 transition-all;
+  @apply py-1 md:py-2 md:text-base text-sm text-third border hover:bg-third border-third rounded w-[105px] md:w-[150px] hover:bg-opacity-10 transition-all;
 }
 
 .animated {

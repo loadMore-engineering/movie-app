@@ -29,7 +29,6 @@ export default function Modal({ data, isModalVisible, closeModal }) {
     }, 300)
   }
 
-  console.log('DATA___', data)
   return (
     <div
       className='h-screen w-screen bg-black bg-opacity-75 fixed z-30 top-0 backdrop-blur-md opacity-0 transition-all duration-300 hidden'
