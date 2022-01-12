@@ -19,17 +19,17 @@ export default function CategoryTabs({
   }
 
   return (
-    <nav className='w-full sm:max-w-screen-xl mx-auto my-3'>
-      <span className='flex text-primary items-center'>
+    <nav className='w-full sm:max-w-[1150px] mx-auto my-3'>
+      <span className='flex text-third items-center'>
         <Link href='/'>
           <a>
             <Button
-              className='p-1 bg-primary bg-opacity-40 rounded hover:bg-opacity-30 transition-all'
-              icon={<HomeIcon className='h-5 w-5 text-primary' />}
+              className='p-1 bg-third bg-opacity-40 rounded hover:bg-opacity-30 transition-all'
+              icon={<HomeIcon className='h-5 w-5 text-third' />}
             />
           </a>
         </Link>
-        <h1 className='text-2xl md:text-4xl text-primary ml-3'>
+        <h1 className='text-2xl md:text-4xl text-third ml-3'>
           {categories[activeCategory].title}
         </h1>
       </span>
@@ -40,7 +40,7 @@ export default function CategoryTabs({
               <Button
                 className={clsx(
                   activeCategory === index
-                    ? 'bg-primary text-primary bg-opacity-20 border-primary opacity-100'
+                    ? 'bg-third text-third bg-opacity-20 border-third opacity-100'
                     : 'hover:bg-opacity-10 bg-opacity-0 border-white text-white opacity-50',
                   'rounded border bg-white py-0.5 px-2 text-sm transition-all',
                 )}

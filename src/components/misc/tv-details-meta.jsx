@@ -22,12 +22,12 @@ export default function TvDetailsMeta(props) {
     <div className='p-2 rounded text-sm md:pt-8 bg-white bg-opacity-5 text-neutral-400 flex-grow min-h-[350px] md:h-[450px]'>
       <div className=' fancy-scroll p-1 flex flex-col overflow-auto h-full'>
         <article className='mb-6'>
-          <h1 className='text-3xl text-white font-bold hidden md:flex'>
+          <h1 className='text-3xl text-white hidden md:flex font-pt-sans'>
             {name}
           </h1>
           <div className='md:flex hidden items-center flex-wrap gap-1 my-3'>
             <div className='lg:mb-0 flex text-sm items-center mr-2'>
-              <StarIcon className='h-4 w-4 text-primary mr-1' />
+              <StarIcon className='h-4 w-4 text-yellow-400 mr-1' />
               {vote_average}
             </div>
             {genres.map((genre) => (

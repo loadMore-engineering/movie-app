@@ -39,14 +39,14 @@ export default function TvDetails(props) {
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <main className='md:pt-[100px] pb-10'>
+      <main className='md:pt-[80px] pb-10'>
         <div className='md:hidden'>
           <CarouselImage
             data={[tvShowDetails]}
             isInDetailPage
           />
         </div>
-        <section className='max-w-screen-xl mx-auto p-3 text-white'>
+        <section className='max-w-[1150px] mx-auto p-3 text-white'>
           <TvSumamry
             showModal={() => setIsModalVisible(true)}
             tvDetails={tvShowDetails}

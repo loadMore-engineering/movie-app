@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import ShowcaseCard from 'components/misc/showcase-card'
-import useHorizontalScroll from 'hooks/useHorizontalScroll'
 import { useRouter } from 'next/router'
 import CategoryHeader from './category-header'
 
@@ -17,7 +16,6 @@ export default function Showcase({
   const id = uniqueId.toLowerCase()
   const scrollRef = useRef()
   const router = useRouter()
-  useHorizontalScroll(id, data.length)
 
   useEffect(() => {
     scrollRef.current.scrollTo({
@@ -27,7 +25,7 @@ export default function Showcase({
   }, [router.asPath])
 
   return (
-    <section className='w-full sm:max-w-[1150px] mx-auto mb-3 px-3'>
+    <section className='w-full sm:max-w-[1150px] mx-auto mt-4 px-3 p-1 bg-white bg-opacity-5'>
       <CategoryHeader
         href={{
           pathname: indexHref,
@@ -36,12 +34,12 @@ export default function Showcase({
         title={title}
       />
       <div
-        className='flex overflow-x-auto fancy-scroll gap-x-4 gap-y-2 pb-2'
+        className='gap-2 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 mb-2'
         id={id}
         ref={scrollRef}
       >
         {data.map((movie) => (
-          <div className='min-w-[175px]' key={movie.id}>
+          <div key={movie.id}>
             <ShowcaseCard
               cardHref={cardHref}
               genres={movie.genre_ids}

@@ -31,7 +31,7 @@ export default function Movie() {
           categories={movieCategory}
           setActiveCategory={setActiveCategory}
         />
-        <section className='max-w-screen-xl mx-auto'>
+        <section className='max-w-[1150px] mx-auto'>
           <InfiniteScrollLayout
             query={query}
           />

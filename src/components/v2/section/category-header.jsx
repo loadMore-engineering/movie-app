@@ -11,7 +11,7 @@ export default function CategoryHeader({
       <h3 className='sm:text-xl text-white'>{title}</h3>
       <Link href={href}>
         <a className='group font-bold text-third hover:underline'>
-          More Movie
+          View more
           <ChevronRightIcon className='h-5 w-5 inline-flex slide-entrance' />
         </a>
       </Link>

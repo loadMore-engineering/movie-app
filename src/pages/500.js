@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Button } from 'components/common'
 
-export default function CustomError() {
+export default function Custom500() {
   const { back } = useRouter()
   return (
     <div className='h-screen w-screen flex-center text-red-500 flex-col'>

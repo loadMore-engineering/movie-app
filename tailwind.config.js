@@ -6,9 +6,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FFE922',
-        secondary: '#0FEFFD',
+        primary: '#ED1173',
+        secondary: '#1296FF',
+        third: '#13FEFE',
         baseLayer: '#202020',
+      },
+      fontFamily: {
+        'pt-sans': ['"PT Sans"'],
+        poppins: ['Poppins'],
+        body: ['Poppins'],
       },
     },
   },
