@@ -31,7 +31,7 @@ export default function MovieDetails(props) {
   return (
     <div>
       <Head>
-        <title>RebelWorks Mini Project</title>
+        <title>Loadmore - {movieDetails.title}</title>
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>

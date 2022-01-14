@@ -14,7 +14,7 @@ export default function Home(props) {
   return (
     <div>
       <Head>
-        <title>RebelWorks Mini Project</title>
+        <title>Loadmore - Movie App</title>
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
