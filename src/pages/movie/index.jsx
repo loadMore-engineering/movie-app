@@ -21,7 +21,7 @@ export default function Movie() {
   return (
     <div>
       <Head>
-        <title>RebelWorks Mini Project - Movie List</title>
+        <title>Loadmore - Movies</title>
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
