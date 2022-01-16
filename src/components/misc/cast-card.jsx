@@ -20,7 +20,7 @@ export default function CastCard({
         />
       </div>
       <div className='flex flex-col p-1 pb-3'>
-        <span className='text-secondary max-w-[90px] sm:max-w-[110px] text-ellipsis'>{name}</span>
+        <span className='text-yellow-400 max-w-[90px] sm:max-w-[110px] text-ellipsis'>{name}</span>
         <span className='text-zinc-400' title={character}>{ellipsisText}</span>
       </div>
     </div>
