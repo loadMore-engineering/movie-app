@@ -1,4 +1,4 @@
-# RebelWorks Mini Project
+# Loadmore - Movie App
 
 [Next.js](https://nextjs.org/) boilerplate based on the [official repo's examples](https://github.com/vercel/next.js/tree/canary/examples), best practices, and popular libraries in the developer community.
 
