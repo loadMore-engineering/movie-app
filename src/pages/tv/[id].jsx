@@ -46,7 +46,7 @@ export default function TvDetails(props) {
             isInDetailPage
           />
         </div>
-        <section className='max-w-[1150px] mx-auto p-3 text-white'>
+        <section className='max-w-[1150px] mx-auto py-3 text-white'>
           <TvSumamry
             showModal={() => setIsModalVisible(true)}
             tvDetails={tvShowDetails}
