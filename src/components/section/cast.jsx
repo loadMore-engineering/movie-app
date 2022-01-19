@@ -43,6 +43,7 @@ export default function Cast(props) {
         {displayedData.map((cast, index) => (
           <CastCard
             character={cast.character}
+            id={cast.id}
             key={index}
             name={cast.name}
             profile_path={cast.profile_path}

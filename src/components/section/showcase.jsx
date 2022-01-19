@@ -27,7 +27,7 @@ export default function Showcase({
   }, [router.asPath])
 
   return (
-    <section className='w-full sm:max-w-[1150px] mx-auto mb-3 px-3'>
+    <section className='w-full sm:max-w-[1150px] pr-1 mx-auto mb-3'>
       <CategoryHeader
         href={{
           pathname: indexHref,

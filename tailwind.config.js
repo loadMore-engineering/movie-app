@@ -14,7 +14,7 @@ module.exports = {
       fontFamily: {
         'pt-sans': ['"PT Sans"'],
         poppins: ['Poppins'],
-        body: ['Poppins'],
+        body: ['Lato'],
       },
     },
   },
