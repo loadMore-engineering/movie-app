@@ -34,7 +34,7 @@ body {
 }
 
 .poster-overlay {
-  background: linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(0, 0, 0, 1) 80.79%);
+  background: linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, rgba(0, 10, 20, 0.9) 80.79%);
 }
 
 .flex-center {

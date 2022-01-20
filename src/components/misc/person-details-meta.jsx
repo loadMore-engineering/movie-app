@@ -38,13 +38,12 @@ export default function PersonDetailsMeta(props) {
           )}
         </article>
         <div className='flex flex-col gap-y-1 mb-6 sm:mb-10'>
-          {deathday ? (
+          <span>
+            <span className='text-neutral-200'>Born:</span> {reviewDateFormat(birthday)} ({calculateAge(birthday)} years old)
+          </span>
+          {deathday && (
             <span>
               <span className='text-neutral-200'>Died:</span> {reviewDateFormat(deathday)}
-            </span>
-          ) : (
-            <span>
-              <span className='text-neutral-200'>Born:</span> {reviewDateFormat(birthday)} ({calculateAge(birthday)} years old)
             </span>
           )}
           <span>

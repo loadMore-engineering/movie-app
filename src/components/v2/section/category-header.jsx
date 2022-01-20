@@ -5,16 +5,19 @@ import Link from 'next/link'
 export default function CategoryHeader({
   title,
   href,
+  showViewMore = true,
 }) {
   return (
     <div className='flex justify-between items-end w-full my-3'>
       <h3 className='sm:text-xl text-white'>{title}</h3>
-      <Link href={href}>
-        <a className='group font-bold text-third hover:underline'>
-          View more
-          <ChevronRightIcon className='h-5 w-5 inline-flex slide-entrance' />
-        </a>
-      </Link>
+      {showViewMore && (
+        <Link href={href}>
+          <a className='group font-bold text-third hover:underline'>
+            View more
+            <ChevronRightIcon className='h-5 w-5 inline-flex slide-entrance' />
+          </a>
+        </Link>
+      )}
     </div>
   )
 }
@@ -22,4 +25,5 @@ export default function CategoryHeader({
 CategoryHeader.propTypes = {
   title: PropTypes.string,
   href: PropTypes.object,
+  showViewMore: PropTypes.bool,
 }
