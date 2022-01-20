@@ -51,7 +51,7 @@ export default function InfiniteScrollLayout({ query }) {
         hasMore
         loader={null}
         next={debounceLoadMore}
-        scrollThreshold={0.9}
+        scrollThreshold={0.8}
       >
         {dataPages.map((dataPage) => (
           <Fragment key={dataPage.page}>

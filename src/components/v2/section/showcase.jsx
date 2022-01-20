@@ -12,6 +12,7 @@ export default function Showcase({
   type,
   indexHref,
   cardHref,
+  showViewMore,
 }) {
   const id = uniqueId.toLowerCase()
   const scrollRef = useRef()
@@ -31,6 +32,7 @@ export default function Showcase({
           pathname: indexHref,
           query: { ...params },
         }}
+        showViewMore={showViewMore}
         title={title}
       />
       <div
@@ -65,4 +67,5 @@ Showcase.propTypes = {
   indexHref: PropTypes.string,
   cardHref: PropTypes.string,
   data: PropTypes.array,
+  showViewMore: PropTypes.bool,
 }
