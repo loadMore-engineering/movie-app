@@ -9,6 +9,7 @@ import { PersonSummary } from 'components/section'
 import { useRouter } from 'next/router'
 import { FallbackMode } from 'components/common'
 import Showcase from 'components/v2/section/showcase'
+import useClientPagination from 'hooks/useClientPagination'
 
 export default function Person(props) {
   const { data } = props
@@ -19,13 +20,15 @@ export default function Person(props) {
   const dataMovieCredits = data?.[2]?.value
   const dataTvCredits = data?.[3]?.value
 
+  // const paginationDataMovies = useClientPagination({ records: dataMovieCredits || [] })
+  // const paginationDataTv = useClientPagination({ records: dataTvCredits || [] })
+
   if (router.isFallback) {
     return <FallbackMode />
   }
 
   const filteredMovieCredits = dataMovieCredits.cast.filter((movie) => movie.poster_path).slice(0, 20)
   const filteredTvCredits = dataTvCredits.cast.filter((tv) => tv.poster_path).slice(0, 20)
-  console.log(filteredTvCredits)
 
   return (
     <div>
@@ -35,12 +38,6 @@ export default function Person(props) {
         <link href='/favicon.ico' rel='icon' />
       </Head>
       <main className='md:pt-[80px] pb-10'>
-        {/* <div className='md:hidden'>
-          <CarouselImage
-            data={[movieDetails]}
-            isInDetailPage
-          />
-        </div> */}
         <section className='max-w-[1150px] mx-auto py-0 sm:py-3 text-white'>
           <PersonSummary
             personDetails={dataPerson}
@@ -49,12 +46,8 @@ export default function Person(props) {
         <Showcase
           cardHref='/movie'
           data={filteredMovieCredits}
-          indexHref='/movie/similar'
-          params={{
-            category: 0,
-            id: router.query?.id,
-          }}
-          showViewMore={dataMovieCredits.cast.length > 20}
+          indexHref={`/movie/person/${router.query?.id}`}
+          showViewMore={false}
           title={`${dataPerson.name} Movies (${dataMovieCredits.cast.length})`}
           type='movie'
           uniqueId='movie_person'
@@ -62,12 +55,8 @@ export default function Person(props) {
         <Showcase
           cardHref='/tv'
           data={filteredTvCredits}
-          indexHref='/movie/similar'
-          params={{
-            category: 0,
-            id: router.query?.id,
-          }}
-          showViewMore={dataTvCredits.cast.length > 20}
+          indexHref={`/tv/person/${router.query?.id}`}
+          showViewMore={false}
           title={`${dataPerson.name} TV Show (${dataTvCredits.cast.length})`}
           type='movie'
           uniqueId='movie_person'
