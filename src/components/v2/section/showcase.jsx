@@ -1,7 +1,9 @@
+/* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types'
 import { useEffect, useRef } from 'react'
 import ShowcaseCard from 'components/misc/showcase-card'
 import { useRouter } from 'next/router'
+import useClientPagination from 'hooks/useClientPagination'
 import CategoryHeader from './category-header'
 
 export default function Showcase({
@@ -17,6 +19,10 @@ export default function Showcase({
   const id = uniqueId.toLowerCase()
   const scrollRef = useRef()
   const router = useRouter()
+  const {
+    data: dataDisplay, goNext, goPrev, currentPage, pageCount,
+    setPage,
+  } = useClientPagination({ records: data })
 
   useEffect(() => {
     scrollRef.current.scrollTo({
@@ -32,6 +38,9 @@ export default function Showcase({
           pathname: indexHref,
           query: { ...params },
         }}
+        pagination={{
+          goNext, goPrev, currentPage, pageCount, setPage,
+        }}
         showViewMore={showViewMore}
         title={title}
       />
@@ -40,8 +49,8 @@ export default function Showcase({
         id={id}
         ref={scrollRef}
       >
-        {data.map((movie) => (
-          <div key={movie.id}>
+        {dataDisplay.map((movie, index) => (
+          <div key={index}>
             <ShowcaseCard
               cardHref={cardHref}
               genres={movie.genre_ids}

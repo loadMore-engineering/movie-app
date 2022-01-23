@@ -9,7 +9,6 @@ import { PersonSummary } from 'components/section'
 import { useRouter } from 'next/router'
 import { FallbackMode } from 'components/common'
 import Showcase from 'components/v2/section/showcase'
-import useClientPagination from 'hooks/useClientPagination'
 
 export default function Person(props) {
   const { data } = props
@@ -20,20 +19,14 @@ export default function Person(props) {
   const dataMovieCredits = data?.[2]?.value
   const dataTvCredits = data?.[3]?.value
 
-  // const paginationDataMovies = useClientPagination({ records: dataMovieCredits || [] })
-  // const paginationDataTv = useClientPagination({ records: dataTvCredits || [] })
-
   if (router.isFallback) {
     return <FallbackMode />
   }
 
-  const filteredMovieCredits = dataMovieCredits.cast.filter((movie) => movie.poster_path).slice(0, 20)
-  const filteredTvCredits = dataTvCredits.cast.filter((tv) => tv.poster_path).slice(0, 20)
-
   return (
     <div>
       <Head>
-        <title>Loadmore - :v</title>
+        <title>Loadmore - {dataPerson.name}</title>
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
@@ -45,7 +38,7 @@ export default function Person(props) {
         </section>
         <Showcase
           cardHref='/movie'
-          data={filteredMovieCredits}
+          data={dataMovieCredits.cast}
           indexHref={`/movie/person/${router.query?.id}`}
           showViewMore={false}
           title={`${dataPerson.name} Movies (${dataMovieCredits.cast.length})`}
@@ -54,7 +47,7 @@ export default function Person(props) {
         />
         <Showcase
           cardHref='/tv'
-          data={filteredTvCredits}
+          data={dataTvCredits.cast}
           indexHref={`/tv/person/${router.query?.id}`}
           showViewMore={false}
           title={`${dataPerson.name} TV Show (${dataTvCredits.cast.length})`}

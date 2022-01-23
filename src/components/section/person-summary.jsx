@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export default function PersonSummary(props) {
   const { personDetails } = props
-  console.log(personDetails)
+
   return (
     <div className='flex flex-col sm:flex-row gap-2'>
       <div className='relative md:flex h-[450px] min-w-[300px]'>
