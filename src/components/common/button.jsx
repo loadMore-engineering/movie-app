@@ -6,10 +6,12 @@ export default function Button({
   children,
   className,
   onClick,
+  disabled = false,
 }) {
   return (
     <button
       className={className}
+      disabled={disabled}
       type='button'
       onClick={onClick}
     >
@@ -21,9 +23,13 @@ export default function Button({
 }
 
 Button.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   icon: PropTypes.node,
   children: PropTypes.any,
   className: PropTypes.string,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 }
