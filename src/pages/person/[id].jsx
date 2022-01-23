@@ -23,24 +23,14 @@ export default function Person(props) {
     return <FallbackMode />
   }
 
-  const filteredMovieCredits = dataMovieCredits.cast.filter((movie) => movie.poster_path).slice(0, 20)
-  const filteredTvCredits = dataTvCredits.cast.filter((tv) => tv.poster_path).slice(0, 20)
-  console.log(filteredTvCredits)
-
   return (
     <div>
       <Head>
-        <title>Loadmore - :v</title>
+        <title>Loadmore - {dataPerson.name}</title>
         <meta content='Movie Apps Prototype integrated with TMDB API' name='description' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
       <main className='md:pt-[80px] pb-10'>
-        {/* <div className='md:hidden'>
-          <CarouselImage
-            data={[movieDetails]}
-            isInDetailPage
-          />
-        </div> */}
         <section className='max-w-[1150px] mx-auto py-0 sm:py-3 text-white'>
           <PersonSummary
             personDetails={dataPerson}
@@ -48,26 +38,18 @@ export default function Person(props) {
         </section>
         <Showcase
           cardHref='/movie'
-          data={filteredMovieCredits}
-          indexHref='/movie/similar'
-          params={{
-            category: 0,
-            id: router.query?.id,
-          }}
-          showViewMore={dataMovieCredits.cast.length > 20}
+          data={dataMovieCredits.cast}
+          indexHref={`/movie/person/${router.query?.id}`}
+          showViewMore={false}
           title={`${dataPerson.name} Movies (${dataMovieCredits.cast.length})`}
           type='movie'
           uniqueId='movie_person'
         />
         <Showcase
           cardHref='/tv'
-          data={filteredTvCredits}
-          indexHref='/movie/similar'
-          params={{
-            category: 0,
-            id: router.query?.id,
-          }}
-          showViewMore={dataTvCredits.cast.length > 20}
+          data={dataTvCredits.cast}
+          indexHref={`/tv/person/${router.query?.id}`}
+          showViewMore={false}
           title={`${dataPerson.name} TV Show (${dataTvCredits.cast.length})`}
           type='movie'
           uniqueId='movie_person'

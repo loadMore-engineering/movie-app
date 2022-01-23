@@ -22,7 +22,7 @@ export default function PersonDetailsMeta(props) {
     <div className='p-2 rounded text-sm md:pt-8 bg-white bg-opacity-5 text-neutral-400 flex-grow min-h-[350px] md:h-[450px]'>
       <div className=' fancy-scroll p-1 flex flex-col overflow-auto h-full'>
         <article className='mb-6'>
-          <h1 className='text-3xl text-white hidden md:flex font-pt-sans'>
+          <h1 className='text-3xl text-white md:flex font-pt-sans'>
             {name}
           </h1>
           <span>{known_for_department}</span>
